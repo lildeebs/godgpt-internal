@@ -34,22 +34,40 @@ jobs:
         run: npm ci
 
       - name: Build Next.js
-        run: npm run build
+        run: |
+          echo "Starting Next.js build..."
+          npm run build
+          echo "Build completed. Checking output..."
+          if [ -d out ]; then
+            echo "✓ out directory created"
+            ls -la out/ | head -10
+          else
+            echo "❌ out directory not found after build"
+            exit 1
+          fi
 
       - name: Ensure .nojekyll exists in output
         run: |
+          echo "Checking build output..."
           if [ ! -d out ]; then
-            echo "Error: out directory not found after build"
+            echo "❌ Error: out directory not found after build"
+            ls -la
             exit 1
           fi
-          if [ -f public/.nojekyll ]; then
-            cp public/.nojekyll out/.nojekyll
-            echo "Copied .nojekyll from public to out"
+          echo "✓ out directory exists"
+          
+          # Create .nojekyll file in out directory
+          touch out/.nojekyll
+          echo "✓ Created .nojekyll in out directory"
+          
+          # Verify it exists
+          if [ -f out/.nojekyll ]; then
+            echo "✓ .nojekyll file confirmed"
+            ls -la out/.nojekyll
           else
-            touch out/.nojekyll
-            echo "Created .nojekyll in out directory"
+            echo "❌ Error: Failed to create .nojekyll"
+            exit 1
           fi
-          ls -la out/.nojekyll || echo "Warning: .nojekyll not found in out"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
