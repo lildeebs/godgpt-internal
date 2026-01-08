@@ -115,10 +115,10 @@ export default function GodGPTInfoPage() {
                 <span className="text-sm font-bold text-purple-300">⚡ Quick Access</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
-                Get Your January Reading Delivered
+                Get Your Personalized January Theme
               </h2>
               <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-                Skip the signup process. Enter your email and we'll send your personalized January theme directly to your inbox.
+                Answer 3 quick questions to help us tailor your January reading. We'll send it directly to your inbox.
               </p>
             </div>
 
@@ -344,9 +344,9 @@ export default function GodGPTInfoPage() {
             {/* Feature 6 */}
             <div className="p-6 rounded-2xl bg-gradient-to-br from-purple-900/30 to-pink-900/30 border border-purple-500/30 hover:border-purple-500/50 transition-all duration-300">
               <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-4">
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
+                  </svg>
               </div>
               <h3 className="text-xl font-bold text-white mb-3">Grounded Practicality</h3>
               <p className="text-gray-300 leading-relaxed">
@@ -450,17 +450,17 @@ export default function GodGPTInfoPage() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
-            <a
-              href="https://godgpt.fun/en"
-              target="_blank"
-              rel="noopener noreferrer"
+          <a
+            href="https://godgpt.fun/en"
+            target="_blank"
+            rel="noopener noreferrer"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-10 h-[56px] rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-xl transition-all duration-200 active:opacity-80 active:scale-[0.98] hover:shadow-[0_0_40px_rgba(168,85,247,0.5)] shadow-[0_8px_30px_rgba(168,85,247,0.4)]"
-            >
+          >
               <span>Get My Free January Theme Preview</span>
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
-            </a>
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </a>
           </div>
 
           <div className="bg-gradient-to-r from-purple-900/30 to-pink-900/30 border-2 border-purple-500/40 rounded-xl p-6 mb-6">

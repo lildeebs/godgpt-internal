@@ -5,9 +5,9 @@ import { config } from '../config/env';
 
 export default function JanuaryReadingForm() {
   const [email, setEmail] = useState('');
-  const [birthDate, setBirthDate] = useState('');
-  const [birthTime, setBirthTime] = useState('');
-  const [birthCity, setBirthCity] = useState('');
+  const [question1, setQuestion1] = useState('');
+  const [question2, setQuestion2] = useState('');
+  const [question3, setQuestion3] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState('');
@@ -40,9 +40,9 @@ export default function JanuaryReadingForm() {
       // Store data locally first (as backup)
       const formData = {
         email,
-        birthDate: birthDate || null,
-        birthTime: birthTime || null,
-        birthCity: birthCity || null,
+        question1: question1 || null,
+        question2: question2 || null,
+        question3: question3 || null,
         source: 'godgpt-marketing-january-reading',
         timestamp: new Date().toISOString(),
       };
@@ -98,10 +98,10 @@ export default function JanuaryReadingForm() {
     <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto">
       <div className="p-6 md:p-8 rounded-2xl bg-gradient-to-br from-purple-900/30 to-pink-900/30 border border-purple-500/30 backdrop-blur-sm">
         <h3 className="text-2xl font-bold text-white mb-2 text-center">
-          Get Your January Theme
+          Get Your Personalized January Theme
         </h3>
         <p className="text-sm text-gray-400 text-center mb-6">
-          Enter your details to receive your personalized January reading via email
+          Answer 3 quick questions to help us tailor your reading
         </p>
 
         <div className="space-y-4">
@@ -121,49 +121,47 @@ export default function JanuaryReadingForm() {
             />
           </div>
 
-          {/* Birth Date - Optional */}
+          {/* Question 1 - Main Focus for 2026 */}
           <div>
-            <label htmlFor="birthDate" className="block text-sm font-medium text-gray-300 mb-2">
-              I was born on <span className="text-gray-500 text-xs">(optional, for more accurate reading)</span>
-            </label>
-            <div className="relative">
-              <input
-                type="date"
-                id="birthDate"
-                value={birthDate}
-                onChange={(e) => setBirthDate(e.target.value)}
-                className="w-full px-4 h-[48px] rounded-lg bg-gray-900/50 border border-gray-700 text-white focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all"
-              />
-            </div>
-          </div>
-
-          {/* Birth Time - Optional */}
-          <div>
-            <label htmlFor="birthTime" className="block text-sm font-medium text-gray-300 mb-2">
-              At <span className="text-gray-500 text-xs">(optional)</span>
-            </label>
-            <div className="relative">
-              <input
-                type="time"
-                id="birthTime"
-                value={birthTime}
-                onChange={(e) => setBirthTime(e.target.value)}
-                className="w-full px-4 h-[48px] rounded-lg bg-gray-900/50 border border-gray-700 text-white focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all"
-              />
-            </div>
-          </div>
-
-          {/* Birth City - Optional */}
-          <div>
-            <label htmlFor="birthCity" className="block text-sm font-medium text-gray-300 mb-2">
-              In <span className="text-gray-500 text-xs">(optional)</span>
+            <label htmlFor="question1" className="block text-sm font-medium text-gray-300 mb-2">
+              What's your main focus for 2026? <span className="text-gray-500 text-xs">(e.g., career growth, relationships, health, creativity)</span>
             </label>
             <input
               type="text"
-              id="birthCity"
-              value={birthCity}
-              onChange={(e) => setBirthCity(e.target.value)}
-              placeholder="City name"
+              id="question1"
+              value={question1}
+              onChange={(e) => setQuestion1(e.target.value)}
+              placeholder="Type your answer..."
+              className="w-full px-4 h-[48px] rounded-lg bg-gray-900/50 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all"
+            />
+          </div>
+
+          {/* Question 2 - Biggest Challenge from 2025 */}
+          <div>
+            <label htmlFor="question2" className="block text-sm font-medium text-gray-300 mb-2">
+              What was your biggest challenge or lesson in 2025? <span className="text-gray-500 text-xs">(optional)</span>
+            </label>
+            <textarea
+              id="question2"
+              value={question2}
+              onChange={(e) => setQuestion2(e.target.value)}
+              placeholder="Share what you learned or want to leave behind..."
+              rows={3}
+              className="w-full px-4 py-3 rounded-lg bg-gray-900/50 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all resize-none"
+            />
+          </div>
+
+          {/* Question 3 - Energy for January */}
+          <div>
+            <label htmlFor="question3" className="block text-sm font-medium text-gray-300 mb-2">
+              What energy do you want to bring into January? <span className="text-gray-500 text-xs">(e.g., new beginnings, healing, action, clarity)</span>
+            </label>
+            <input
+              type="text"
+              id="question3"
+              value={question3}
+              onChange={(e) => setQuestion3(e.target.value)}
+              placeholder="Type your answer..."
               className="w-full px-4 h-[48px] rounded-lg bg-gray-900/50 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all"
             />
           </div>
