@@ -33,7 +33,7 @@ Copy the HTML and integrate into your existing website or landing page builder.
 ### Option 4: Share via CDN
 Access directly from GitHub:
 ```
-https://raw.githubusercontent.com/lildeebs/marketingbrainstorm/main/marketing%20brainstorm/godgpt-landing.html
+https://raw.githubusercontent.com/lildeebs/GodGPT-Marketing/main/marketing/godgpt-landing.html
 ```
 
 ## 🎨 Customization
@@ -61,7 +61,7 @@ Add your tracking code before the closing `</body>` tag:
 
 ## 🔗 Links to Live Versions
 
-- **Next.js Version (Main):** https://lildeebs.github.io/marketingbrainstorm/godgpt-info
+- **Next.js Version (Main):** https://lildeebs.github.io/GodGPT-Marketing/godgpt-info
 - **Standalone HTML:** Open `godgpt-landing.html` locally or host anywhere
 
 ## 📦 What's Included
