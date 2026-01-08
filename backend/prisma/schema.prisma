@@ -1,0 +1,30 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model AffiliateSubmission {
+  id                  String   @id @default(uuid())
+  fullName            String
+  email               String
+  socialMediaChannels String
+  followerCount       Int
+  submittedAt         DateTime @default(now())
+  status              String   @default("PENDING")
+  emailSentAt         DateTime?
+  emailSentStatus     String?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@index([email])
+  @@index([submittedAt])
+  @@index([status])
+  @@map("affiliate_submissions")
+}

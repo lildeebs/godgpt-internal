@@ -1,0 +1,175 @@
+openapi: 3.0.3
+info:
+  title: Affiliate Onboarding Form API
+  description: API for submitting affiliate onboarding forms
+  version: 1.0.0
+  contact:
+    email: dionne.ng@aelf.io
+
+servers:
+  - url: https://api.example.com
+    description: Production server
+  - url: http://localhost:3000
+    description: Development server
+
+paths:
+  /api/submissions:
+    post:
+      summary: Submit affiliate onboarding form
+      description: Accepts form submission, validates data, stores in database, and sends email notification
+      operationId: submitForm
+      tags:
+        - Submissions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubmissionRequest'
+            examples:
+              validSubmission:
+                value:
+                  fullName: "John Doe"
+                  email: "john.doe@example.com"
+                  socialMediaChannels: "Instagram, TikTok"
+                  followerCount: 50000
+      responses:
+        '201':
+          description: Form submitted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubmissionResponse'
+              examples:
+                success:
+                  value:
+                    id: "123e4567-e89b-12d3-a456-426614174000"
+                    status: "pending"
+                    message: "Form submitted successfully"
+        '400':
+          description: Validation error or invalid input
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                validationError:
+                  value:
+                    error: "Validation failed"
+                    details:
+                      - field: "email"
+                        message: "Invalid email format"
+                      - field: "followerCount"
+                        message: "Follower count must be a positive number"
+        '429':
+          description: Rate limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                rateLimit:
+                  value:
+                    error: "Too many requests"
+                    message: "Please try again later"
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              examples:
+                serverError:
+                  value:
+                    error: "Internal server error"
+                    message: "An error occurred while processing your submission"
+
+components:
+  schemas:
+    SubmissionRequest:
+      type: object
+      required:
+        - fullName
+        - email
+        - socialMediaChannels
+        - followerCount
+      properties:
+        fullName:
+          type: string
+          minLength: 1
+          maxLength: 255
+          description: Affiliate's full name
+          example: "John Doe"
+        email:
+          type: string
+          format: email
+          maxLength: 255
+          description: Affiliate's email address
+          example: "john.doe@example.com"
+        socialMediaChannels:
+          type: string
+          minLength: 1
+          maxLength: 500
+          description: Comma-separated list of main social media channels
+          example: "Instagram, TikTok, YouTube"
+        followerCount:
+          type: integer
+          minimum: 0
+          maximum: 999999999
+          description: Total number of followers across all channels
+          example: 50000
+
+    SubmissionResponse:
+      type: object
+      required:
+        - id
+        - status
+        - message
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identifier for the submission
+          example: "123e4567-e89b-12d3-a456-426614174000"
+        status:
+          type: string
+          enum: [pending, processed, failed]
+          description: Current status of the submission
+          example: "pending"
+        message:
+          type: string
+          description: Human-readable success message
+          example: "Form submitted successfully"
+
+    ErrorResponse:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: string
+          description: Error type or message
+          example: "Validation failed"
+        message:
+          type: string
+          description: Human-readable error message
+          example: "Please check your input and try again"
+        details:
+          type: array
+          description: Array of field-specific validation errors
+          items:
+            type: object
+            properties:
+              field:
+                type: string
+                example: "email"
+              message:
+                type: string
+                example: "Invalid email format"
+
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: API key for rate limiting (optional, may be required in future)

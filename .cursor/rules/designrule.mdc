@@ -1,0 +1,199 @@
+---
+alwaysApply: true
+---
+
+
+Project Brand Identity
+Project Name
+[Your Project Name]
+
+Brand Colors
+Primary: [Your primary color, e.g., #FE5706]
+Secondary: [Your secondary color, e.g., #FFA147]
+Accent: [Your accent color]
+Background: [Your background color, e.g., #010100]
+Surface: [Your surface color, e.g., #1A1A1A]
+Text Primary: [Your primary text color, e.g., #E6E6E6]
+Text Secondary: [Your secondary text color, e.g., #999999]
+Success: [Your success color]
+Warning: [Your warning color]
+Error: [Your error color]
+Info: [Your info color]
+Typography
+Primary Font: [Your primary font family, e.g., 'Space Grotesk']
+Secondary Font: [Your secondary font family, e.g., 'Didot']
+Font Weights Available: [List available weights, e.g., 400, 500, 600, 700]
+Theme Concept
+Visual Style: [e.g., Cosmic/Mystical, Minimalist, Playful, Corporate, Futuristic]
+Mood: [e.g., Contemplative, Energetic, Serene, Powerful]
+Aesthetic Keywords: [e.g., ethereal, glowing, dark, vibrant]
+Component Overrides
+Buttons
+Primary Button (Override)
+Height: [Custom height, e.g., 52px] (base allows: 48-56px)
+Border Radius: [Custom radius, e.g., 12px] (base allows: 8-12px)
+Background: [Brand primary color, e.g., #FE5706]
+Text Color: [Text color on button]
+Font: [Custom font, e.g., Space Grotesk, 18px, semibold]
+Pressed State: [Custom, e.g., 0.85 opacity OR scale(0.95)] (base: 0.8 opacity)
+Shadow: [Custom shadow, e.g., 0 4px 12px rgba(254, 87, 6, 0.3)]
+Hover State (desktop): [Custom hover effect]
+Secondary Button (Override)
+Height: [Custom height]
+Border Radius: [Custom radius]
+Border: [Border style, e.g., 2px solid #FE5706]
+Background: [Background style]
+Pressed State: [Custom pressed state]
+Text Button (Override)
+Height: [Custom height]
+Text Color: [Text color]
+Underline: [Yes/No, when to show]
+Icon Button (Override)
+Size: [Custom size, minimum 44x44px]
+Border Radius: [Custom radius]
+Background: [Background style]
+States: [Custom states]
+Custom Button Variants
+[Variant Name]: [Description, e.g., Gradient Button with orange gradient]
+[Variant Name]: [Description, e.g., Icon-only compact 40x40px]
+Cards
+Standard Card (Override)
+Border Radius: [Custom, e.g., 15px] (base allows: 12-16px)
+Padding: [Custom, e.g., 20px] (base allows: 16-20px)
+Background: [Brand surface color]
+Shadow: [Custom shadow, e.g., 0 2px 8px rgba(0, 0, 0, 0.3)]
+Border: [Optional border style]
+Elevated Card (Override)
+Border Radius: [Custom]
+Padding: [Custom]
+Shadow: [Custom elevated shadow]
+Forms
+Input Fields (Override)
+Border Radius: [Custom, e.g., 10px] (base allows: 8-12px)
+Height: [Custom, e.g., 52px] (base allows: 48-56px)
+Background: [Input background color]
+Border: [Border style, e.g., 1px solid #333]
+Focus Border: [Focus border style, e.g., 2px solid #FE5706]
+Placeholder Color: [Placeholder text color]
+Text Color: [Input text color]
+Labels (Override)
+Font: [Custom font]
+Color: [Label color]
+Size: [Custom size]
+Spacing Overrides
+Mobile Padding
+Screen Edge Padding: [Custom, e.g., 20px] (base allows: 20-24px)
+Section Spacing: [Custom vertical spacing]
+Custom Spacing Scale
+xs: [Custom value]
+sm: [Custom value]
+md: [Custom value]
+lg: [Custom value]
+xl: [Custom value]
+Border Radius Overrides
+Buttons: [Custom radius]
+Cards: [Custom radius]
+Inputs: [Custom radius]
+Modals: [Custom radius]
+Badges: [Custom radius]
+Animation Overrides
+Custom Animation Timings
+Button Press: [Custom duration, e.g., 200ms] (base: 150ms)
+Modal Open: [Custom duration, e.g., 400ms] (base: 300ms)
+Page Transition: [Custom duration]
+List Item: [Custom duration]
+Custom Easing
+Primary Easing: [Custom easing function, e.g., cubic-bezier(0.4, 0, 0.2, 1)]
+Enter Animation: [Custom easing]
+Exit Animation: [Custom easing]
+Custom Animations
+[Animation Name]: [Description and timing]
+Project-Specific Components
+[Component Name]
+Description: [What this component is and when to use it]
+Height: [Size]
+Padding: [Spacing]
+Border Radius: [Radius]
+Background: [Background style]
+States: [List all states]
+Usage: [When to use this component]
+[Another Component]
+[Component specifications]
+Design Tokens (CSS Variables)
+:root {
+  /* Brand Colors */
+  --color-primary: [Your primary color];
+  --color-secondary: [Your secondary color];
+  --color-accent: [Your accent color];
+  --color-background: [Your background color];
+  --color-surface: [Your surface color];
+  --color-text-primary: [Your text color];
+  --color-text-secondary: [Your secondary text color];
+  --color-success: [Your success color];
+  --color-warning: [Your warning color];
+  --color-error: [Your error color];
+  --color-info: [Your info color];
+
+  /* Spacing */
+  --spacing-mobile: [Your mobile padding];
+  --spacing-tablet: [Your tablet padding];
+  --spacing-desktop: [Your desktop padding];
+
+  /* Border Radius */
+  --radius-button: [Your button radius];
+  --radius-card: [Your card radius];
+  --radius-input: [Your input radius];
+  --radius-modal: [Your modal radius];
+  --radius-badge: [Your badge radius];
+
+  /* Button States */
+  --button-pressed-opacity: [Your pressed opacity];
+  --button-pressed-scale: [Your pressed scale];
+  --button-disabled-opacity: [Your disabled opacity];
+
+  /* Shadows */
+  --shadow-sm: [Your small shadow];
+  --shadow-md: [Your medium shadow];
+  --shadow-lg: [Your large shadow];
+  --shadow-button: [Your button shadow];
+  --shadow-card: [Your card shadow];
+
+  /* Typography */
+  --font-primary: '[Your primary font]', sans-serif;
+  --font-secondary: '[Your secondary font]', serif;
+  --font-size-xs: [Your xs size];
+  --font-size-sm: [Your sm size];
+  --font-size-base: [Your base size];
+  --font-size-lg: [Your lg size];
+  --font-size-xl: [Your xl size];
+
+  /* Animation */
+  --animation-fast: [Your fast duration];
+  --animation-normal: [Your normal duration];
+  --animation-slow: [Your slow duration];
+  --easing-primary: [Your primary easing];
+}
+Usage Notes
+All base rules from global UI/UX rules apply unless overridden above
+When in doubt, follow base rules for consistency
+Document any significant deviations from base rules
+Test all customizations on real devices
+Maintain accessibility standards (WCAG 2.1 AA minimum)
+Project-Specific Patterns
+[Pattern Name]
+When to use: [Description]
+Implementation: [How to implement]
+Example: [Code example or reference]
+Brand Guidelines
+Logo Usage
+[Logo placement rules]
+[Logo sizing rules]
+[Logo spacing rules]
+Imagery Style
+[Image style guidelines]
+[Image treatment rules]
+[Color grading preferences]
+Voice & Tone
+[Writing style]
+[Tone guidelines]
+[Content approach]

@@ -1,0 +1,30 @@
+# cursor Development Guidelines
+
+Auto-generated from all feature plans. Last updated: 2026-01-07
+
+## Active Technologies
+
+- Frontend: Next.js 14+ (React 18+), TypeScript 5+. Backend: Node.js 20+, TypeScript 5+ + Frontend: React Hook Form, Zod, Framer Motion, Tailwind CSS. Backend: Express.js, Prisma ORM, Resend SDK, validator.js (001-affiliate-onboarding-form)
+
+## Project Structure
+
+```text
+backend/
+frontend/
+tests/
+```
+
+## Commands
+
+npm test && npm run lint
+
+## Code Style
+
+Frontend: Next.js 14+ (React 18+), TypeScript 5+. Backend: Node.js 20+, TypeScript 5+: Follow standard conventions
+
+## Recent Changes
+
+- 001-affiliate-onboarding-form: Added Frontend: Next.js 14+ (React 18+), TypeScript 5+. Backend: Node.js 20+, TypeScript 5+ + Frontend: React Hook Form, Zod, Framer Motion, Tailwind CSS. Backend: Express.js, Prisma ORM, Resend SDK, validator.js
+
+<!-- MANUAL ADDITIONS START -->
+<!-- MANUAL ADDITIONS END -->
