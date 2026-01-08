@@ -3,6 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   output: 'export',
   basePath: '/GodGPT-Marketing',
+  trailingSlash: true,
   images: {
     unoptimized: true,
   },

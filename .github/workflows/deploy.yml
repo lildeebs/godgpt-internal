@@ -35,6 +35,14 @@ jobs:
       - name: Build Next.js
         run: npm run build
 
+      - name: Ensure .nojekyll exists
+        run: |
+          if [ -f public/.nojekyll ]; then
+            cp public/.nojekyll out/.nojekyll
+          else
+            touch out/.nojekyll
+          fi
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
