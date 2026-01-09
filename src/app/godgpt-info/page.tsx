@@ -9,12 +9,51 @@ export const metadata: Metadata = {
 
 export default function GodGPTInfoPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0a0a0a] via-[#1a0a2e] to-[#0a0a0a]">
+    <div className="min-h-screen bg-gradient-to-b from-[#0a0a0a] via-[#1a0a2e] to-[#0a0a0a] relative overflow-hidden">
+      {/* Animated Starfield Background */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        {[...Array(50)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute rounded-full bg-white animate-pulse"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              width: `${Math.random() * 3 + 1}px`,
+              height: `${Math.random() * 3 + 1}px`,
+              opacity: Math.random() * 0.8 + 0.2,
+              animationDelay: `${Math.random() * 3}s`,
+              animationDuration: `${Math.random() * 2 + 2}s`,
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Animated Grid Pattern */}
+      <div 
+        className="fixed inset-0 opacity-[0.03] pointer-events-none z-0"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(168, 85, 247, 0.1) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(168, 85, 247, 0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: '50px 50px',
+        }}
+      />
+
+      {/* Floating Orbs */}
+      <div className="fixed inset-0 pointer-events-none z-0">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500/10 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: '4s' }} />
+        <div className="absolute top-40 right-20 w-96 h-96 bg-pink-500/10 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '6s', animationDelay: '1s' }} />
+        <div className="absolute bottom-20 left-1/4 w-80 h-80 bg-blue-500/10 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: '5s', animationDelay: '2s' }} />
+      </div>
+
       {/* Hero Section */}
-      <section className="relative px-5 pt-16 pb-20 md:px-8 md:pt-24 md:pb-32">
+      <section className="relative px-5 pt-16 pb-20 md:px-8 md:pt-24 md:pb-32 z-10">
         <div className="max-w-6xl mx-auto">
-          {/* Mystical glow effect */}
-          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-purple-500/20 rounded-full blur-[120px] pointer-events-none" />
+          {/* Enhanced Mystical glow effect with animation */}
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-purple-500/20 rounded-full blur-[120px] pointer-events-none animate-pulse" style={{ animationDuration: '3s' }} />
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-pink-500/10 rounded-full blur-[140px] pointer-events-none animate-pulse" style={{ animationDuration: '4s', animationDelay: '1s' }} />
           
           <div className="relative z-10 text-center">
             {/* Badge */}
@@ -26,17 +65,19 @@ export default function GodGPTInfoPage() {
               <span className="text-sm font-bold text-red-300">⚡ LIMITED: Only 247 Free Readings Left This Week</span>
             </div>
 
-            {/* Main Headline */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-              <span className="text-white">Your 2025 </span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400">
+            {/* Main Headline with Glow Effect */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight relative">
+              <span className="text-white drop-shadow-[0_0_20px_rgba(168,85,247,0.5)]">Your 2025 </span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 animate-gradient bg-[length:200%_auto] drop-shadow-[0_0_30px_rgba(168,85,247,0.6)]">
                 Wrapped
               </span>
               <br />
-              <span className="text-white">Your 2026 </span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-pink-400">
+              <span className="text-white drop-shadow-[0_0_20px_rgba(236,72,153,0.5)]">Your 2026 </span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-400 to-pink-400 animate-gradient bg-[length:200%_auto] drop-shadow-[0_0_30px_rgba(236,72,153,0.6)]">
                 Revealed
               </span>
+              {/* Glowing underline effect */}
+              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1/2 h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent blur-sm animate-pulse" />
             </h1>
 
             {/* Subheadline */}
@@ -51,12 +92,16 @@ export default function GodGPTInfoPage() {
                 href="https://godgpt.fun/en"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto px-8 h-[56px] flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-lg transition-all duration-200 active:opacity-80 active:scale-[0.98] hover:shadow-[0_0_40px_rgba(168,85,247,0.5)] shadow-[0_8px_30px_rgba(168,85,247,0.4)]"
+                className="group relative w-full sm:w-auto px-8 h-[56px] flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-lg transition-all duration-300 active:opacity-80 active:scale-[0.98] hover:shadow-[0_0_60px_rgba(168,85,247,0.8)] shadow-[0_8px_30px_rgba(168,85,247,0.4)] overflow-hidden"
               >
-                <span>Discover My January Theme (Free)</span>
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {/* Animated gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-gradient bg-[length:200%_auto]" />
+                <span className="relative z-10">Discover My January Theme (Free)</span>
+                <svg className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
+                {/* Glowing border effect */}
+                <div className="absolute inset-0 rounded-xl border-2 border-purple-400/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm" />
               </a>
               <a
                 href="https://godgpt.fun/en"
@@ -104,10 +149,29 @@ export default function GodGPTInfoPage() {
       </section>
 
       {/* Email Capture Form Section */}
-      <section className="px-5 py-16 md:px-8 md:py-20 relative">
+      <section className="px-5 py-16 md:px-8 md:py-20 relative z-10">
         <div className="max-w-4xl mx-auto">
-          {/* Background glow effect */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/10 rounded-full blur-[120px] pointer-events-none" />
+          {/* Enhanced Background glow effects */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/10 rounded-full blur-[120px] pointer-events-none animate-pulse" style={{ animationDuration: '4s' }} />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-pink-500/5 rounded-full blur-[140px] pointer-events-none animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }} />
+          
+          {/* Floating particles around form */}
+          <div className="absolute inset-0 pointer-events-none">
+            {[...Array(8)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute rounded-full bg-purple-400/20 animate-float"
+                style={{
+                  left: `${20 + Math.random() * 60}%`,
+                  top: `${20 + Math.random() * 60}%`,
+                  width: `${Math.random() * 4 + 2}px`,
+                  height: `${Math.random() * 4 + 2}px`,
+                  animationDelay: `${Math.random() * 3}s`,
+                  animationDuration: `${Math.random() * 3 + 4}s`,
+                }}
+              />
+            ))}
+          </div>
           
           <div className="relative z-10">
             <div className="text-center mb-8">
@@ -141,36 +205,45 @@ export default function GodGPTInfoPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Step 1 */}
-            <div className="text-center">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-white">1</span>
+            <div className="group text-center relative p-6 rounded-2xl bg-gradient-to-br from-purple-900/20 to-pink-900/20 border border-purple-500/20 hover:border-purple-500/50 transition-all duration-300">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/10 group-hover:to-pink-500/10 transition-all duration-300 rounded-2xl" />
+              <div className="relative z-10">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mx-auto mb-4 shadow-[0_0_30px_rgba(168,85,247,0.5)] group-hover:shadow-[0_0_40px_rgba(168,85,247,0.8)] transition-all duration-300 group-hover:scale-110">
+                  <span className="text-2xl font-bold text-white">1</span>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3 drop-shadow-[0_0_10px_rgba(168,85,247,0.3)]">Share Your 2025 Story</h3>
+                <p className="text-gray-300 leading-relaxed">
+                  Upload your reflections: wins, challenges, lessons learned. Your 2025 wrap becomes the foundation for AI analysis.
+                </p>
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">Share Your 2025 Story</h3>
-              <p className="text-gray-300 leading-relaxed">
-                Upload your reflections: wins, challenges, lessons learned. Your 2025 wrap becomes the foundation for AI analysis.
-              </p>
             </div>
 
             {/* Step 2 */}
-            <div className="text-center">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-white">2</span>
+            <div className="group text-center relative p-6 rounded-2xl bg-gradient-to-br from-purple-900/20 to-pink-900/20 border border-purple-500/20 hover:border-purple-500/50 transition-all duration-300">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/10 group-hover:to-pink-500/10 transition-all duration-300 rounded-2xl" />
+              <div className="relative z-10">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mx-auto mb-4 shadow-[0_0_30px_rgba(168,85,247,0.5)] group-hover:shadow-[0_0_40px_rgba(168,85,247,0.8)] transition-all duration-300 group-hover:scale-110">
+                  <span className="text-2xl font-bold text-white">2</span>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3 drop-shadow-[0_0_10px_rgba(168,85,247,0.3)]">AI Analyzes Your Patterns</h3>
+                <p className="text-gray-300 leading-relaxed">
+                  GodGPT identifies hidden themes, growth areas, and opportunities based on your unique journey and stated goals for 2026.
+                </p>
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">AI Analyzes Your Patterns</h3>
-              <p className="text-gray-300 leading-relaxed">
-                GodGPT identifies hidden themes, growth areas, and opportunities based on your unique journey and stated goals for 2026.
-              </p>
             </div>
 
             {/* Step 3 */}
-            <div className="text-center">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl font-bold text-white">3</span>
+            <div className="group text-center relative p-6 rounded-2xl bg-gradient-to-br from-purple-900/20 to-pink-900/20 border border-purple-500/20 hover:border-purple-500/50 transition-all duration-300">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 to-pink-500/0 group-hover:from-purple-500/10 group-hover:to-pink-500/10 transition-all duration-300 rounded-2xl" />
+              <div className="relative z-10">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mx-auto mb-4 shadow-[0_0_30px_rgba(168,85,247,0.5)] group-hover:shadow-[0_0_40px_rgba(168,85,247,0.8)] transition-all duration-300 group-hover:scale-110">
+                  <span className="text-2xl font-bold text-white">3</span>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3 drop-shadow-[0_0_10px_rgba(168,85,247,0.3)]">Receive Your 2026 Roadmap</h3>
+                <p className="text-gray-300 leading-relaxed">
+                  Get personalized monthly themes, actionable steps, and guidance tailored to help you achieve your goals this year.
+                </p>
               </div>
-              <h3 className="text-xl font-bold text-white mb-3">Receive Your 2026 Roadmap</h3>
-              <p className="text-gray-300 leading-relaxed">
-                Get personalized monthly themes, actionable steps, and guidance tailored to help you achieve your goals this year.
-              </p>
             </div>
           </div>
         </div>
@@ -191,15 +264,25 @@ export default function GodGPTInfoPage() {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             {/* January */}
-            <div className="p-4 rounded-xl bg-gradient-to-br from-blue-900/30 to-blue-800/20 border border-blue-500/30 hover:border-blue-400/50 transition-all duration-300">
-              <div className="text-blue-400 text-sm font-semibold mb-1">January</div>
-              <div className="text-white font-bold">New Beginnings</div>
+            <div className="group relative p-4 rounded-xl bg-gradient-to-br from-blue-900/30 to-blue-800/20 border border-blue-500/30 hover:border-blue-400/50 transition-all duration-300 overflow-hidden">
+              {/* Glowing effect on hover */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-blue-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
+              <div className="relative z-10">
+                <div className="text-blue-400 text-sm font-semibold mb-1">January</div>
+                <div className="text-white font-bold drop-shadow-[0_0_10px_rgba(59,130,246,0.5)]">New Beginnings</div>
+              </div>
+              {/* Animated border glow */}
+              <div className="absolute inset-0 rounded-xl border-2 border-blue-400/0 group-hover:border-blue-400/50 transition-all duration-300" />
             </div>
 
             {/* February */}
-            <div className="p-4 rounded-xl bg-gradient-to-br from-pink-900/30 to-pink-800/20 border border-pink-500/30 hover:border-pink-400/50 transition-all duration-300">
-              <div className="text-pink-400 text-sm font-semibold mb-1">February</div>
-              <div className="text-white font-bold">Love & Connection</div>
+            <div className="group relative p-4 rounded-xl bg-gradient-to-br from-pink-900/30 to-pink-800/20 border border-pink-500/30 hover:border-pink-400/50 transition-all duration-300 overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-br from-pink-500/0 to-pink-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
+              <div className="relative z-10">
+                <div className="text-pink-400 text-sm font-semibold mb-1">February</div>
+                <div className="text-white font-bold drop-shadow-[0_0_10px_rgba(236,72,153,0.5)]">Love & Connection</div>
+              </div>
+              <div className="absolute inset-0 rounded-xl border-2 border-pink-400/0 group-hover:border-pink-400/50 transition-all duration-300" />
             </div>
 
             {/* March */}
