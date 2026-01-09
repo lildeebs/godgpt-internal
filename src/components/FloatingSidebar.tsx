@@ -1,8 +1,24 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function FloatingSidebar() {
+  const [logoPath, setLogoPath] = useState('/GodGPT-Marketing/logo.png');
+
+  useEffect(() => {
+    // Determine correct logo path based on current URL
+    if (typeof window !== 'undefined') {
+      const pathname = window.location.pathname;
+      // For GitHub Pages with basePath
+      if (pathname.startsWith('/GodGPT-Marketing')) {
+        setLogoPath('/GodGPT-Marketing/logo.png');
+      } else {
+        // For local dev or root deployment
+        setLogoPath('/logo.png');
+      }
+    }
+  }, []);
+
   return (
     <div className="fixed left-0 top-1/2 -translate-y-1/2 z-50 hidden lg:block">
       <div className="flex flex-col items-center gap-6 p-4 rounded-r-2xl bg-gradient-to-b from-purple-900/20 to-pink-900/20 backdrop-blur-lg border border-purple-500/30 shadow-[0_8px_30px_rgba(168,85,247,0.3)]">
@@ -14,21 +30,23 @@ export default function FloatingSidebar() {
         >
           <div className="w-12 h-12 rounded-xl bg-black flex items-center justify-center shadow-[0_0_20px_rgba(168,85,247,0.5)] group-hover:shadow-[0_0_30px_rgba(168,85,247,0.8)] transition-all duration-300 group-hover:scale-110 border-2 border-white/20 group-hover:border-white/40 overflow-hidden relative">
             <img 
-              src="/logo.png" 
+              src={logoPath}
               alt="GodGPT Logo" 
               className="w-full h-full object-contain p-1"
               onError={(e) => {
-                // Try with basePath if first attempt fails
                 const target = e.target as HTMLImageElement;
-                if (!target.src.includes('/GodGPT-Marketing')) {
+                // Try alternative paths
+                if (logoPath === '/GodGPT-Marketing/logo.png') {
+                  target.src = '/logo.png';
+                } else if (logoPath === '/logo.png') {
                   target.src = '/GodGPT-Marketing/logo.png';
-                  return;
-                }
-                // Final fallback to G text
-                target.style.display = 'none';
-                const fallback = target.parentElement?.querySelector('.fallback-text');
-                if (fallback) {
-                  (fallback as HTMLElement).style.display = 'flex';
+                } else {
+                  // Final fallback to G text
+                  target.style.display = 'none';
+                  const fallback = target.parentElement?.querySelector('.fallback-text');
+                  if (fallback) {
+                    (fallback as HTMLElement).style.display = 'flex';
+                  }
                 }
               }}
             />
