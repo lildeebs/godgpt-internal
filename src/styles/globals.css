@@ -84,18 +84,26 @@ a {
   animation: glow-pulse 4s ease-in-out infinite;
 }
 
-/* Lightbeam sweep animation */
-@keyframes lightbeam {
+/* Lightbeam sweep animation - for text only */
+@keyframes lightbeam-text {
   0% {
     left: -100%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
   }
   100% {
     left: 100%;
+    opacity: 0;
   }
 }
 
-.animate-lightbeam {
-  animation: lightbeam 3s ease-in-out infinite;
+.animate-lightbeam-text {
+  animation: lightbeam-text 3s ease-in-out infinite;
 }
 
 /* Text glow pulse animation */

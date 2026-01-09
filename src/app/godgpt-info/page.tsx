@@ -67,31 +67,38 @@ export default function GodGPTInfoPage() {
 
             {/* Main Headline with Enhanced Glow and Lightbeam Effect */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight relative">
-              {/* Lightbeam overlay animation */}
-              <div className="absolute inset-0 overflow-hidden rounded-lg pointer-events-none">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-lightbeam" 
-                     style={{
-                       width: '200%',
-                       height: '120%',
-                       top: '-10%',
-                       left: '-100%',
-                       transform: 'skewX(-20deg)',
-                     }} />
-              </div>
-              
-              {/* Text with enhanced glow */}
+              {/* Text with enhanced glow and lightbeam effect */}
               <span className="relative text-white drop-shadow-[0_0_30px_rgba(168,85,247,0.8)] animate-glow-pulse-text">
                 Your 2025{' '}
               </span>
-              <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-pink-300 to-purple-300 animate-gradient bg-[length:200%_auto] drop-shadow-[0_0_40px_rgba(168,85,247,0.9),0_0_80px_rgba(168,85,247,0.5)] animate-glow-pulse-text">
-                Wrapped
+              <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-pink-300 to-purple-300 animate-gradient bg-[length:200%_auto] drop-shadow-[0_0_40px_rgba(168,85,247,0.9),0_0_80px_rgba(168,85,247,0.5)] animate-glow-pulse-text overflow-hidden">
+                {/* Lightbeam only on the word */}
+                <span className="relative z-10">Wrapped</span>
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-lightbeam-text pointer-events-none" 
+                     style={{
+                       width: '150%',
+                       height: '100%',
+                       left: '-25%',
+                       top: 0,
+                       transform: 'skewX(-15deg)',
+                     }} />
               </span>
               <br />
               <span className="relative text-white drop-shadow-[0_0_30px_rgba(236,72,153,0.8)] animate-glow-pulse-text">
                 Your 2026{' '}
               </span>
-              <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-purple-300 to-pink-300 animate-gradient bg-[length:200%_auto] drop-shadow-[0_0_40px_rgba(236,72,153,0.9),0_0_80px_rgba(236,72,153,0.5)] animate-glow-pulse-text">
-                Revealed
+              <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-pink-300 via-purple-300 to-pink-300 animate-gradient bg-[length:200%_auto] drop-shadow-[0_0_40px_rgba(236,72,153,0.9),0_0_80px_rgba(236,72,153,0.5)] animate-glow-pulse-text overflow-hidden">
+                {/* Lightbeam only on the word */}
+                <span className="relative z-10">Revealed</span>
+                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-lightbeam-text pointer-events-none" 
+                     style={{
+                       width: '150%',
+                       height: '100%',
+                       left: '-25%',
+                       top: 0,
+                       transform: 'skewX(-15deg)',
+                       animationDelay: '1.5s',
+                     }} />
               </span>
               
               {/* Multiple glow layers for depth */}

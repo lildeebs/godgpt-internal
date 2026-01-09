@@ -6,13 +6,13 @@ export const formSchema = z.object({
     .string()
     .min(1, 'Full name is required')
     .max(255, 'Full name must be 255 characters or less')
-    .trim(),
+    .transform((val) => val.trim()),
   email: z
     .string()
     .min(1, 'Email is required')
     .email('Please enter a valid email address')
     .max(255, 'Email must be 255 characters or less')
-    .trim(),
+    .transform((val) => val.trim().toLowerCase()),
   socialMediaChannels: z
     .array(z.enum(['Facebook', 'Instagram', 'YouTube', 'TikTok']))
     .min(1, 'Please select at least one social media channel'),
