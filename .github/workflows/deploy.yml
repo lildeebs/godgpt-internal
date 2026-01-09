@@ -35,6 +35,9 @@ jobs:
 
       - name: Build Next.js
         run: npm run build
+        env:
+          NODE_ENV: production
+          EXPORT_MODE: 'true'
 
       - name: Verify build output
         run: |
