@@ -124,7 +124,7 @@ Located in `src/components/`:
 
 ## 🔗 Related Files
 
-- Main landing page: `src/app/godgpt-info/page.tsx`
+- Main landing page: `src/app/2025-wrapped/page.tsx`
 - Original form: `src/components/JanuaryReadingForm.tsx`
 - Campaign details: `2025-wrapped/campaign-overview/2025-wrap-campaign-lark.md`
 

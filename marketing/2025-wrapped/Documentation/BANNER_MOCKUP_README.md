@@ -2,7 +2,7 @@
 
 ## Overview
 
-This banner component integrates the marketing landing page (`https://lildeebs.github.io/GodGPT-Marketing/godgpt-info/`) as a clickable call-to-action in the "Download now" section at the bottom of the GodGPT app interface.
+This banner component integrates the marketing landing page (`https://lildeebs.github.io/GodGPT-Marketing/2025-wrapped/`) as a clickable call-to-action in the "Download now" section at the bottom of the GodGPT app interface.
 
 ## Features
 
@@ -89,7 +89,7 @@ export default function HomePage() {
 ### Change Marketing URL
 Edit `src/components/DownloadBanner.tsx`:
 ```tsx
-href="https://lildeebs.github.io/GodGPT-Marketing/godgpt-info/"
+href="https://lildeebs.github.io/GodGPT-Marketing/2025-wrapped/"
 ```
 
 ### Adjust Colors
@@ -166,4 +166,4 @@ onClick={() => {
 
 - **Standalone Mockup**: Open `marketing/download-banner-mockup.html` in browser
 - **Next.js Preview**: http://localhost:3000/banner-preview (when dev server running)
-- **Marketing Landing Page**: https://lildeebs.github.io/GodGPT-Marketing/godgpt-info/
+- **Marketing Landing Page**: https://lildeebs.github.io/GodGPT-Marketing/2025-wrapped/

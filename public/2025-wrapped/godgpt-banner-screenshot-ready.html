@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GodGPT App - Banner Integration</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+    .animate-pulse-glow {
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); }
+      50% { box-shadow: 0 0 40px rgba(168, 85, 247, 0.8); }
+    }
+    /* Optimized for screenshot - clean, no scrollbars */
+    body {
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<body class="bg-[#0a0a0a] text-white" style="height: 100vh; overflow: hidden;">
+  <!-- Main App Container - Fixed Height for Screenshot -->
+  <div class="h-screen flex flex-col">
+    <!-- Header - Exact Match to Screenshot -->
+    <header class="flex items-center justify-between p-4 border-b border-gray-800 bg-[#0a0a0a] flex-shrink-0">
+      <h1 class="text-xl font-bold text-white">GodGPT</h1>
+      <div class="flex items-center gap-3">
+        <!-- Compass Icon with 70 -->
+        <div class="w-10 h-10 rounded-full bg-gray-800/50 flex items-center justify-center border border-gray-700 relative">
+          <span class="text-gray-300 text-lg">🧭</span>
+          <span class="absolute -bottom-1 -right-1 bg-purple-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">70</span>
+        </div>
+        <!-- User Profile Icon -->
+        <div class="w-10 h-10 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center">
+          <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          </svg>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area - Exact Match to Screenshot -->
+    <main class="flex-1 flex flex-col items-center justify-center px-4 py-8 pb-4 relative overflow-y-auto" id="mainContent">
+      <!-- Badge with Star and 10 -->
+      <div class="mb-6 px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 flex items-center gap-2 shadow-lg">
+        <span class="text-yellow-400 text-lg">⭐</span>
+        <span class="text-white text-sm font-bold">10</span>
+      </div>
+
+      <!-- Main Prompt -->
+      <h2 class="text-4xl md:text-5xl font-bold mb-8 text-center text-white">What can I help with?</h2>
+
+      <!-- Input Field - Exact Match -->
+      <div class="w-full max-w-2xl mb-8">
+        <div class="rounded-2xl bg-gray-900/80 border border-gray-700 p-4 flex items-center gap-3 shadow-xl">
+          <!-- Plus Icon -->
+          <button class="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white transition-colors border border-gray-700">
+            <span class="text-2xl font-light">+</span>
+          </button>
+          <!-- Input -->
+          <input 
+            type="text" 
+            placeholder="Ask anything" 
+            class="flex-1 bg-transparent text-white placeholder-gray-500 outline-none text-lg"
+          />
+          <!-- Voice Input Icon (3 lines) -->
+          <button class="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white transition-colors border border-gray-700">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Suggested Actions - Exact Match to Screenshot -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-4xl">
+        <!-- Action 1 -->
+        <button class="p-5 rounded-2xl bg-gray-900/60 border border-gray-700 hover:border-purple-500/50 transition-all text-left hover:bg-gray-900/80">
+          <div class="font-semibold text-lg text-white">Review My 2025 Ψ Structure</div>
+        </button>
+
+        <!-- Action 2 -->
+        <button class="p-5 rounded-2xl bg-gray-900/60 border border-gray-700 hover:border-purple-500/50 transition-all text-left hover:bg-gray-900/80">
+          <div class="font-semibold text-lg text-white">Design My 2026 Persona Structure</div>
+        </button>
+
+        <!-- Action 3 - "Unlock Your Path" with Hot label and background -->
+        <button class="p-5 rounded-2xl border-2 border-purple-500/50 hover:border-purple-500 transition-all text-left relative overflow-hidden group">
+          <!-- Hot Label -->
+          <div class="absolute top-3 right-3 px-3 py-1 rounded-full bg-red-500 text-white text-xs font-bold shadow-lg z-10">Hot</div>
+          <!-- Background Image Effect (Mystical landscape) -->
+          <div class="absolute inset-0 bg-gradient-to-br from-purple-900/40 via-pink-900/30 to-blue-900/40 opacity-60 group-hover:opacity-80 transition-opacity"></div>
+          <div class="relative z-0">
+            <div class="font-semibold text-lg text-white mb-2">Unlock Your Path</div>
+            <div class="text-sm text-gray-300">Tap to begin</div>
+          </div>
+        </button>
+
+        <!-- Action 4 -->
+        <button class="p-5 rounded-2xl bg-gray-900/60 border border-gray-700 hover:border-purple-500/50 transition-all text-left hover:bg-gray-900/80">
+          <div class="font-semibold text-lg text-white">Feeling Lost? Talk it through</div>
+        </button>
+      </div>
+    </main>
+
+    <!-- Banner/Form Container -->
+    <div class="flex-shrink-0 px-4 pb-4" id="bannerContainer">
+      <!-- Lunar New Year Banner - Shows when form is hidden -->
+      <div class="max-w-4xl mx-auto" id="lunarBanner">
+        <div class="bg-gradient-to-r from-[#1a0a2e] via-[#2d1b4e] to-[#1a0a2e] border border-purple-500/30 rounded-2xl shadow-[0_4px_20px_rgba(168,85,247,0.3)] p-4">
+          <div class="flex items-center justify-between gap-4">
+            <!-- Left: Logo + Text -->
+            <div class="flex items-center gap-3 flex-shrink-0">
+              <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+                <span class="text-white font-bold text-sm">Ψ</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-white font-semibold text-xs">Get your Lunar New Year Reading</span>
+                <span class="text-gray-400 text-[10px]">Personalized January theme</span>
+              </div>
+            </div>
+
+            <!-- Center: CTA Button -->
+            <button
+              onclick="showForm()"
+              class="flex-1 px-4 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold text-sm transition-all duration-200 hover:shadow-[0_0_20px_rgba(168,85,247,0.6)] shadow-[0_2px_10px_rgba(168,85,247,0.4)] flex items-center justify-center gap-2 hover:scale-105"
+            >
+              <span class="text-xs">✨</span>
+              <span class="text-xs sm:text-sm">Get Started</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </button>
+
+            <!-- Right: Dismiss Button -->
+            <button
+              onclick="dismissBanner()"
+              class="w-7 h-7 rounded-full bg-gray-800/50 hover:bg-gray-700/50 flex items-center justify-center text-gray-400 hover:text-white transition-colors flex-shrink-0"
+              aria-label="Dismiss banner"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- January Reading Form - Shows when banner button is clicked -->
+      <div class="max-w-2xl mx-auto hidden" id="januaryForm">
+        <div class="bg-gradient-to-br from-purple-900/40 to-pink-900/40 border border-purple-500/30 rounded-2xl p-6 backdrop-blur-sm">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-bold text-white">Get Your Personalized January Theme</h3>
+            <button
+              onclick="hideForm()"
+              class="text-gray-400 hover:text-white transition-colors"
+              aria-label="Close form"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          
+          <p class="text-sm text-gray-400 mb-6">Answer 3 quick questions to help us tailor your January reading</p>
+
+          <form id="readingForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+            <!-- Email -->
+            <div>
+              <label for="form-email" class="block text-sm font-medium text-gray-300 mb-2">
+                My email is <span class="text-red-400">*</span>
+              </label>
+              <input
+                type="email"
+                id="form-email"
+                required
+                placeholder="your.email@example.com"
+                class="w-full px-4 h-[48px] rounded-lg bg-gray-900/50 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all"
+              />
+            </div>
+
+            <!-- Question 1 -->
+            <div>
+              <label for="form-q1" class="block text-sm font-medium text-gray-300 mb-2">
+                What's your main focus for 2026? <span class="text-gray-500 text-xs">(e.g., career growth, relationships, health, creativity)</span>
+              </label>
+              <input
+                type="text"
+                id="form-q1"
+                placeholder="Type your answer..."
+                class="w-full px-4 h-[48px] rounded-lg bg-gray-900/50 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all"
+              />
+            </div>
+
+            <!-- Question 2 -->
+            <div>
+              <label for="form-q2" class="block text-sm font-medium text-gray-300 mb-2">
+                What was your biggest challenge or lesson in 2025? <span class="text-gray-500 text-xs">(optional)</span>
+              </label>
+              <textarea
+                id="form-q2"
+                placeholder="Share what you learned or want to leave behind..."
+                rows="3"
+                class="w-full px-4 py-3 rounded-lg bg-gray-900/50 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all resize-none"
+              ></textarea>
+            </div>
+
+            <!-- Question 3 -->
+            <div>
+              <label for="form-q3" class="block text-sm font-medium text-gray-300 mb-2">
+                What energy do you want to bring into January? <span class="text-gray-500 text-xs">(e.g., new beginnings, healing, action, clarity)</span>
+              </label>
+              <input
+                type="text"
+                id="form-q3"
+                placeholder="Type your answer..."
+                class="w-full px-4 h-[48px] rounded-lg bg-gray-900/50 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all"
+              />
+            </div>
+
+            <!-- Error Message -->
+            <div id="formError" class="hidden p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-300 text-sm"></div>
+
+            <!-- Submit Button -->
+            <div class="flex gap-3">
+              <button
+                type="submit"
+                id="submitBtn"
+                class="flex-1 h-[48px] rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold transition-all duration-200 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] shadow-[0_4px_15px_rgba(168,85,247,0.3)] disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Get My January Reading →
+              </button>
+              <button
+                type="button"
+                onclick="hideForm()"
+                class="px-6 h-[48px] rounded-xl bg-gray-800/50 border border-gray-700 text-gray-300 font-semibold hover:bg-gray-700/50 transition-colors"
+              >
+                Cancel
+              </button>
+            </div>
+
+            <p class="text-xs text-gray-500 text-center">
+              By submitting, you agree to receive your January reading via email. 
+              We respect your privacy and won't spam you.
+            </p>
+          </form>
+        </div>
+      </div>
+
+      <!-- Success Message - Shows after form submission -->
+      <div class="max-w-2xl mx-auto hidden" id="successMessage">
+        <div class="bg-gradient-to-br from-green-900/40 to-emerald-900/40 border border-green-500/30 rounded-2xl p-6">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center">
+              <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-white">Your January Reading is Coming!</h3>
+              <p class="text-sm text-gray-300">Check your email in a few minutes for your personalized theme.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Form state management
+    function showForm() {
+      document.getElementById('lunarBanner').classList.add('hidden');
+      document.getElementById('januaryForm').classList.remove('hidden');
+      document.getElementById('successMessage').classList.add('hidden');
+      // Scroll form into view
+      document.getElementById('januaryForm').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function hideForm() {
+      document.getElementById('januaryForm').classList.add('hidden');
+      document.getElementById('lunarBanner').classList.remove('hidden');
+      document.getElementById('successMessage').classList.add('hidden');
+    }
+
+    function dismissBanner() {
+      document.getElementById('bannerContainer').style.display = 'none';
+    }
+
+    function showSuccess() {
+      document.getElementById('januaryForm').classList.add('hidden');
+      document.getElementById('lunarBanner').classList.add('hidden');
+      document.getElementById('successMessage').classList.remove('hidden');
+    }
+
+    // Form submission handler
+    async function handleFormSubmit(event) {
+      event.preventDefault();
+      
+      const email = document.getElementById('form-email').value;
+      const question1 = document.getElementById('form-q1').value;
+      const question2 = document.getElementById('form-q2').value;
+      const question3 = document.getElementById('form-q3').value;
+      const errorDiv = document.getElementById('formError');
+      const submitBtn = document.getElementById('submitBtn');
+      
+      // Validate email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email || !emailRegex.test(email)) {
+        errorDiv.textContent = 'Please enter a valid email address';
+        errorDiv.classList.remove('hidden');
+        return;
+      }
+
+      // Disable submit button
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="flex items-center justify-center gap-2"><svg class="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Sending...</span>';
+      errorDiv.classList.add('hidden');
+
+      // Prepare form data
+      const formData = {
+        email,
+        question1: question1 || null,
+        question2: question2 || null,
+        question3: question3 || null,
+        source: 'godgpt-chatbot-january-reading',
+        timestamp: new Date().toISOString(),
+      };
+
+      // Store locally as backup
+      localStorage.setItem('january_reading_data', JSON.stringify(formData));
+
+      try {
+        // Try to send to backend (if available)
+        try {
+          const response = await fetch('/api/january-reading', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+          });
+
+          if (response.ok) {
+            console.log('Successfully sent to backend');
+          }
+        } catch (apiError) {
+          console.log('Backend endpoint not available, using localStorage fallback');
+        }
+
+        // Show success message
+        showSuccess();
+        
+        // Optional: Redirect after 3 seconds
+        setTimeout(() => {
+          // window.location.href = 'https://godgpt.fun/en';
+        }, 3000);
+      } catch (err) {
+        errorDiv.textContent = 'Something went wrong. Please try again.';
+        errorDiv.classList.remove('hidden');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Get My January Reading →';
+      }
+    }
+  </script>
+</body>
+</html>

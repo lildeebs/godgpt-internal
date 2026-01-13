@@ -61,7 +61,7 @@ Add your tracking code before the closing `</body>` tag:
 
 ## 🔗 Links to Live Versions
 
-- **Next.js Version (Main):** https://lildeebs.github.io/GodGPT-Marketing/godgpt-info
+- **Next.js Version (Main):** https://lildeebs.github.io/GodGPT-Marketing/2025-wrapped
 - **Standalone HTML:** Open `godgpt-landing.html` locally or host anywhere
 
 ## 📦 What's Included
@@ -84,7 +84,7 @@ Add your tracking code before the closing `</body>` tag:
 
 ## 🔄 Relationship to Next.js App
 
-This is a **standalone export** of the Next.js page at `src/app/godgpt-info/page.tsx`.
+This is a **standalone export** of the Next.js page at `src/app/2025-wrapped/page.tsx`.
 
 - **Next.js Version:** Dynamic, optimized, integrated with rest of app
 - **Standalone HTML:** Static, portable, works anywhere

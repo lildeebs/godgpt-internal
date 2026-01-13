@@ -30,7 +30,7 @@ export default function DownloadBanner() {
 
             {/* Marketing Landing Page CTA - Prominent Button */}
             <a
-              href="https://lildeebs.github.io/GodGPT-Marketing/godgpt-info/"
+              href="https://lildeebs.github.io/GodGPT-Marketing/2025-wrapped/"
               target="_blank"
               rel="noopener noreferrer"
               className="ml-4 px-6 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold text-sm sm:text-base transition-all duration-200 active:opacity-80 active:scale-[0.98] hover:shadow-[0_0_30px_rgba(168,85,247,0.6)] shadow-[0_4px_15px_rgba(168,85,247,0.4)] flex items-center gap-2 group"
@@ -116,7 +116,7 @@ export default function DownloadBanner() {
         {/* Mobile: Additional Marketing CTA */}
         <div className="md:hidden mt-3 pt-3 border-t border-purple-500/20">
           <a
-            href="https://lildeebs.github.io/GodGPT-Marketing/godgpt-info/"
+            href="https://lildeebs.github.io/GodGPT-Marketing/2025-wrapped/"
             target="_blank"
             rel="noopener noreferrer"
             className="w-full block text-center px-4 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold text-sm transition-all duration-200 active:opacity-80 active:scale-[0.98] hover:shadow-[0_0_30px_rgba(168,85,247,0.6)] shadow-[0_4px_15px_rgba(168,85,247,0.4)]"
