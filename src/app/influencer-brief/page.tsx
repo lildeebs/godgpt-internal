@@ -4,13 +4,17 @@ import { useEffect, useState } from 'react';
 
 // Helper to get correct image path with basePath support
 const getImagePath = (imageName: string) => {
-  if (typeof window === 'undefined') {
-    return `/influencer-brief/${imageName.replace(/ /g, '%20')}`;
-  }
-  const pathname = window.location.pathname;
-  const basePath = pathname.startsWith('/GodGPT-Marketing') ? '/GodGPT-Marketing' : '';
   // URL encode spaces in filename
   const encodedName = imageName.replace(/ /g, '%20');
+  
+  if (typeof window === 'undefined') {
+    // Server-side: use basePath from Next.js config
+    return `/GodGPT-Marketing/influencer-brief/${encodedName}`;
+  }
+  
+  // Client-side: detect basePath from current URL
+  const pathname = window.location.pathname;
+  const basePath = pathname.startsWith('/GodGPT-Marketing') ? '/GodGPT-Marketing' : '';
   return `${basePath}/influencer-brief/${encodedName}`;
 };
 
