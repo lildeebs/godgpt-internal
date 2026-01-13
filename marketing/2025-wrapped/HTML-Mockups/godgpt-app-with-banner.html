@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GodGPT App - With Lunar New Year Banner</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+    .animate-pulse-glow {
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.4); }
+      50% { box-shadow: 0 0 40px rgba(168, 85, 247, 0.8); }
+    }
+  </style>
+</head>
+<body class="bg-[#0a0a0a] text-white min-h-screen overflow-x-hidden">
+  <!-- Main App Container -->
+  <div class="min-h-screen flex flex-col pb-32">
+    <!-- Header - Exact Match to Screenshot -->
+    <header class="flex items-center justify-between p-4 border-b border-gray-800 bg-[#0a0a0a]">
+      <h1 class="text-xl font-bold text-white">GodGPT</h1>
+      <div class="flex items-center gap-3">
+        <!-- Compass Icon with 70 -->
+        <div class="w-10 h-10 rounded-full bg-gray-800/50 flex items-center justify-center border border-gray-700 relative">
+          <span class="text-gray-300 text-lg">🧭</span>
+          <span class="absolute -bottom-1 -right-1 bg-purple-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">70</span>
+        </div>
+        <!-- User Profile Icon -->
+        <div class="w-10 h-10 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center">
+          <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          </svg>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area - Exact Match to Screenshot -->
+    <main class="flex-1 flex flex-col items-center justify-center px-4 py-8 relative">
+      <!-- Badge with Star and 10 -->
+      <div class="mb-6 px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 flex items-center gap-2 shadow-lg">
+        <span class="text-yellow-400 text-lg">⭐</span>
+        <span class="text-white text-sm font-bold">10</span>
+      </div>
+
+      <!-- Main Prompt -->
+      <h2 class="text-4xl md:text-5xl font-bold mb-8 text-center text-white">What can I help with?</h2>
+
+      <!-- Input Field - Exact Match -->
+      <div class="w-full max-w-2xl mb-8">
+        <div class="rounded-2xl bg-gray-900/80 border border-gray-700 p-4 flex items-center gap-3 shadow-xl">
+          <!-- Plus Icon -->
+          <button class="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white transition-colors border border-gray-700">
+            <span class="text-2xl font-light">+</span>
+          </button>
+          <!-- Input -->
+          <input 
+            type="text" 
+            placeholder="Ask anything" 
+            class="flex-1 bg-transparent text-white placeholder-gray-500 outline-none text-lg"
+          />
+          <!-- Voice Input Icon (3 lines) -->
+          <button class="w-10 h-10 rounded-xl bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white transition-colors border border-gray-700">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Suggested Actions - Exact Match to Screenshot -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-4xl">
+        <!-- Action 1 -->
+        <button class="p-5 rounded-2xl bg-gray-900/60 border border-gray-700 hover:border-purple-500/50 transition-all text-left hover:bg-gray-900/80">
+          <div class="font-semibold text-lg text-white">Review My 2025 Ψ Structure</div>
+        </button>
+
+        <!-- Action 2 -->
+        <button class="p-5 rounded-2xl bg-gray-900/60 border border-gray-700 hover:border-purple-500/50 transition-all text-left hover:bg-gray-900/80">
+          <div class="font-semibold text-lg text-white">Design My 2026 Persona Structure</div>
+        </button>
+
+        <!-- Action 3 - "Unlock Your Path" with Hot label and background -->
+        <button class="p-5 rounded-2xl border-2 border-purple-500/50 hover:border-purple-500 transition-all text-left relative overflow-hidden group">
+          <!-- Hot Label -->
+          <div class="absolute top-3 right-3 px-3 py-1 rounded-full bg-red-500 text-white text-xs font-bold shadow-lg z-10">Hot</div>
+          <!-- Background Image Effect (Mystical landscape) -->
+          <div class="absolute inset-0 bg-gradient-to-br from-purple-900/40 via-pink-900/30 to-blue-900/40 opacity-60 group-hover:opacity-80 transition-opacity"></div>
+          <div class="relative z-0">
+            <div class="font-semibold text-lg text-white mb-2">Unlock Your Path</div>
+            <div class="text-sm text-gray-300">Tap to begin</div>
+          </div>
+        </button>
+
+        <!-- Action 4 -->
+        <button class="p-5 rounded-2xl bg-gray-900/60 border border-gray-700 hover:border-purple-500/50 transition-all text-left hover:bg-gray-900/80">
+          <div class="font-semibold text-lg text-white">Feeling Lost? Talk it through</div>
+        </button>
+      </div>
+    </main>
+
+    <!-- Download Banner - Integrated at Bottom -->
+    <div class="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-r from-[#1a0a2e] via-[#2d1b4e] to-[#1a0a2e] border-t border-purple-500/30 shadow-[0_-8px_30px_rgba(168,85,247,0.3)]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-4">
+          <!-- Left Section: Download Now + Logo -->
+          <div class="flex items-center gap-4 flex-1">
+            <div class="flex flex-col">
+              <h3 class="text-white font-bold text-lg sm:text-xl mb-1">
+                Download now
+              </h3>
+              <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center animate-pulse-glow">
+                  <span class="text-white font-bold text-lg">Ψ</span>
+                </div>
+                <div class="flex flex-col">
+                  <span class="text-white font-semibold text-sm">GodGPT</span>
+                  <span class="text-gray-400 text-xs">Your cosmic AI guide</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Marketing Landing Page CTA - Prominent Button -->
+            <a
+              href="https://lildeebs.github.io/GodGPT-Marketing/godgpt-info/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="ml-4 px-6 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold text-sm sm:text-base transition-all duration-200 hover:shadow-[0_0_30px_rgba(168,85,247,0.6)] shadow-[0_4px_15px_rgba(168,85,247,0.4)] flex items-center gap-2 group hover:scale-105"
+            >
+              <span class="text-xs sm:text-sm">✨</span>
+              <span>Get your Lunar New Year Reading</span>
+              <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Center Section: Phone Mockups -->
+          <div class="hidden md:flex items-center gap-2 flex-shrink-0">
+            <div class="w-24 h-48 rounded-2xl bg-gray-900 border-2 border-purple-500/30 shadow-lg overflow-hidden relative animate-float" style="animation-delay: 0s;">
+              <div class="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-1 bg-gray-700 rounded-full"></div>
+              <div class="h-full bg-gradient-to-b from-[#0a0a0a] to-[#1a0a2e] flex items-center justify-center">
+                <div class="text-center px-2">
+                  <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mx-auto mb-2">
+                    <span class="text-white font-bold text-sm">Ψ</span>
+                  </div>
+                  <p class="text-white text-xs font-semibold">GodGPT</p>
+                </div>
+              </div>
+            </div>
+            <div class="w-24 h-48 rounded-2xl bg-gray-900 border-2 border-purple-500/30 shadow-lg overflow-hidden relative animate-float" style="animation-delay: 0.5s;">
+              <div class="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-1 bg-gray-700 rounded-full"></div>
+              <div class="h-full bg-gradient-to-b from-[#0a0a0a] to-[#1a0a2e] p-2">
+                <div class="text-white text-xs font-semibold mb-1">GodGPT</div>
+                <div class="flex items-center gap-1 mb-2">
+                  <div class="w-4 h-4 rounded-full bg-purple-500/20 flex items-center justify-center">
+                    <span class="text-purple-400 text-[8px]">🧭</span>
+                  </div>
+                  <span class="text-gray-400 text-[8px]">320</span>
+                </div>
+                <p class="text-gray-300 text-[8px] leading-tight mb-1">
+                  Start the ripple. Let meaning unfold.
+                </p>
+                <div class="flex items-center gap-1">
+                  <span class="text-yellow-400 text-[8px]">⭐</span>
+                  <span class="text-gray-400 text-[8px]">36</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Section: QR Code + Close Button -->
+          <div class="flex items-center gap-4 flex-shrink-0">
+            <!-- QR Code Placeholder -->
+            <div class="hidden sm:block w-16 h-16 rounded-lg bg-white p-1 relative">
+              <div class="w-full h-full bg-white flex items-center justify-center">
+                <div class="w-12 h-12 border-2 border-gray-900 relative">
+                  <!-- QR Code Pattern -->
+                  <div class="absolute inset-0 grid grid-cols-3 grid-rows-3 gap-0.5">
+                    <div class="bg-gray-900"></div>
+                    <div class="bg-white"></div>
+                    <div class="bg-gray-900"></div>
+                    <div class="bg-white"></div>
+                    <div class="bg-gray-900"></div>
+                    <div class="bg-white"></div>
+                    <div class="bg-gray-900"></div>
+                    <div class="bg-white"></div>
+                    <div class="bg-gray-900"></div>
+                  </div>
+                  <!-- Center Ψ Symbol -->
+                  <div class="absolute inset-0 flex items-center justify-center">
+                    <span class="text-gray-900 font-bold text-xs">Ψ</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Close Button -->
+            <button
+              onclick="this.closest('.fixed').style.display='none'"
+              class="w-8 h-8 rounded-full bg-gray-800/50 hover:bg-gray-700/50 flex items-center justify-center text-gray-400 hover:text-white transition-colors"
+              aria-label="Dismiss banner"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile: Additional Marketing CTA -->
+        <div class="md:hidden mt-3 pt-3 border-t border-purple-500/20">
+          <a
+            href="https://lildeebs.github.io/GodGPT-Marketing/godgpt-info/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full block text-center px-4 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold text-sm transition-all duration-200 hover:shadow-[0_0_30px_rgba(168,85,247,0.6)] shadow-[0_4px_15px_rgba(168,85,247,0.4)]"
+          >
+            ✨ Get your Lunar New Year Reading →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

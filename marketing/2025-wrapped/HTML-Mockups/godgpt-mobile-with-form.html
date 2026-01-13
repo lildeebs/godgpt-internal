@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GodGPT Mobile - Lunar New Year Reading</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    /* Hide scrollbar but allow scrolling */
+    .overflow-x-auto::-webkit-scrollbar {
+      display: none;
+    }
+    .overflow-x-auto {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-[#0a0a0a] text-white" style="min-height: 100vh;">
+  <!-- Mobile App Container -->
+  <div class="max-w-md mx-auto bg-[#0a0a0a] min-h-screen flex flex-col">
+    <!-- Top Bar - Mobile Status Bar -->
+    <div class="flex items-center justify-between px-4 pt-2 pb-2">
+      <span class="text-white text-sm font-medium">4:27</span>
+      <div class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+        </svg>
+        <span class="text-white text-sm font-bold">GodGPT</span>
+      </div>
+      <div class="flex items-center gap-1">
+        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.07 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/>
+        </svg>
+        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M1 9l2 2c4.97-4.97 13.03-4.97 18 0l2-2C16.93 2.93 7.07 2.93 1 9zm8 8l3 3 3-3c-1.65-1.66-4.34-1.66-6 0zm-4-4l2 2c2.76-2.76 7.24-2.76 10 0l2-2C15.14 9.14 8.87 9.14 5 13z"/>
+        </svg>
+        <span class="text-white text-xs">63%</span>
+        <div class="w-8 h-8 rounded-full bg-purple-500/20 border border-purple-500/30 flex items-center justify-center">
+          <span class="text-purple-400 text-xs">⭐</span>
+          <span class="text-white text-xs ml-0.5">310</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Credit Notification Pop-up -->
+    <div class="px-4 mb-4">
+      <div class="bg-gray-800/90 rounded-xl p-3 flex items-center justify-between relative">
+        <div class="flex items-center gap-2">
+          <span class="text-xl">🎉</span>
+          <div>
+            <p class="text-white text-sm font-semibold">You've got 320 FREE credits!</p>
+            <p class="text-gray-400 text-xs">Chatting with GodGPT costs 10 credits per message.</p>
+          </div>
+        </div>
+        <button class="text-gray-400 hover:text-white">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="flex-1 flex flex-col items-center justify-center px-4 py-8 relative overflow-y-auto">
+      <!-- Badge with Star and 10 -->
+      <div class="mb-6 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 flex items-center gap-2 shadow-lg animate-float">
+        <span class="text-yellow-400 text-lg">⭐</span>
+        <span class="text-white text-sm font-bold">10</span>
+      </div>
+
+      <!-- Main Prompt -->
+      <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center text-white">What can I help with?</h2>
+
+      <!-- Feature Cards - Horizontal Scrollable -->
+      <div class="w-full mb-8 overflow-x-auto" style="scrollbar-width: none; -ms-overflow-style: none;">
+        <div class="flex gap-3 px-4" style="width: max-content;">
+          <!-- Lunar New Year Reading Card - FIRST -->
+          <button 
+            onclick="showForm()"
+            class="relative p-4 rounded-2xl overflow-hidden text-left h-32 flex-shrink-0 bg-gradient-to-br from-[#1a0a2e] via-[#2d1b4e] to-[#1a0a2e] border border-purple-500/30 shadow-[0_4px_20px_rgba(168,85,247,0.3)]" 
+            style="width: 160px;"
+          >
+            <div class="relative z-10 h-full flex flex-col justify-between">
+              <div class="absolute top-2 right-2 px-2 py-1 rounded-full bg-yellow-500/80 text-white text-xs font-bold">Limited</div>
+              <div>
+                <div class="flex items-center gap-1 mb-1">
+                  <span class="text-lg">✨</span>
+                  <h3 class="text-white font-bold text-sm leading-tight">Lunar New Year Reading</h3>
+                </div>
+                <p class="text-white/80 text-xs">Get your personalized theme</p>
+              </div>
+            </div>
+          </button>
+
+          <!-- Daily Guide Card -->
+          <button class="relative p-4 rounded-2xl overflow-hidden text-left h-32 flex-shrink-0" style="width: 160px;">
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-500/40 via-green-500/30 to-blue-600/40"></div>
+            <div class="absolute inset-0" style="background-image: radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, transparent 70%);"></div>
+            <div class="relative z-10">
+              <div class="absolute top-2 right-2 px-2 py-1 rounded-full bg-green-500 text-white text-xs font-bold">Daily</div>
+              <h3 class="text-white font-bold text-lg mb-1">Daily Guide</h3>
+              <p class="text-white/80 text-xs">Tap to start</p>
+            </div>
+          </button>
+
+          <!-- Soul Link Card -->
+          <button class="relative p-4 rounded-2xl overflow-hidden text-left h-32 flex-shrink-0" style="width: 160px;">
+            <div class="absolute inset-0 bg-gradient-to-br from-purple-900/60 via-pink-900/40 to-purple-800/60"></div>
+            <div class="absolute inset-0" style="background-image: radial-gradient(ellipse at center top, rgba(255,255,255,0.2) 0%, transparent 60%);"></div>
+            <div class="relative z-10">
+              <div class="absolute top-2 right-2 px-2 py-1 rounded-full bg-purple-500 text-white text-xs font-bold">New</div>
+              <h3 class="text-white font-bold text-lg mb-1">Soul Link</h3>
+              <p class="text-white/80 text-xs">Enter the flow</p>
+            </div>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Spacer for form/success messages -->
+    <div class="px-4 pb-2 min-h-[60px]" id="formContainer">
+
+    <!-- January Reading Form - Shows when banner card is clicked -->
+    <div class="px-4 pb-2 hidden" id="januaryForm">
+      <div class="bg-gradient-to-br from-purple-900/40 to-pink-900/40 border border-purple-500/30 rounded-xl p-4 backdrop-blur-sm">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="text-lg font-bold text-white">Get Your Personalized January Theme</h3>
+          <button
+            onclick="hideForm()"
+            class="text-gray-400 hover:text-white transition-colors"
+            aria-label="Close form"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        
+        <p class="text-xs text-gray-400 mb-4">Answer 3 quick questions to help us tailor your January reading</p>
+
+        <form id="readingForm" onsubmit="handleFormSubmit(event)" class="space-y-3">
+          <!-- Email -->
+          <div>
+            <label for="form-email" class="block text-xs font-medium text-gray-300 mb-1">
+              My email is <span class="text-red-400">*</span>
+            </label>
+            <input
+              type="email"
+              id="form-email"
+              required
+              placeholder="your.email@example.com"
+              class="w-full px-3 h-[44px] rounded-lg bg-gray-900/50 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all text-sm"
+            />
+          </div>
+
+          <!-- Question 1 -->
+          <div>
+            <label for="form-q1" class="block text-xs font-medium text-gray-300 mb-1">
+              What's your main focus for 2026?
+            </label>
+            <input
+              type="text"
+              id="form-q1"
+              placeholder="e.g., career growth, relationships..."
+              class="w-full px-3 h-[44px] rounded-lg bg-gray-900/50 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all text-sm"
+            />
+          </div>
+
+          <!-- Question 2 -->
+          <div>
+            <label for="form-q2" class="block text-xs font-medium text-gray-300 mb-1">
+              Biggest challenge in 2025? <span class="text-gray-500">(optional)</span>
+            </label>
+            <textarea
+              id="form-q2"
+              placeholder="Share what you learned..."
+              rows="2"
+              class="w-full px-3 py-2 rounded-lg bg-gray-900/50 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all resize-none text-sm"
+            ></textarea>
+          </div>
+
+          <!-- Question 3 -->
+          <div>
+            <label for="form-q3" class="block text-xs font-medium text-gray-300 mb-1">
+              Energy for January?
+            </label>
+            <input
+              type="text"
+              id="form-q3"
+              placeholder="e.g., new beginnings, healing..."
+              class="w-full px-3 h-[44px] rounded-lg bg-gray-900/50 border border-gray-700 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all text-sm"
+            />
+          </div>
+
+          <!-- Error Message -->
+          <div id="formError" class="hidden p-2 rounded-lg bg-red-500/10 border border-red-500/30 text-red-300 text-xs"></div>
+
+          <!-- Submit Button -->
+          <div class="flex gap-2 pt-2">
+            <button
+              type="submit"
+              id="submitBtn"
+              class="flex-1 h-[44px] rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold text-sm transition-all duration-200 hover:shadow-[0_0_20px_rgba(168,85,247,0.4)] shadow-[0_4px_15px_rgba(168,85,247,0.3)] disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Get My January Reading →
+            </button>
+            <button
+              type="button"
+              onclick="hideForm()"
+              class="px-4 h-[44px] rounded-xl bg-gray-800/50 border border-gray-700 text-gray-300 font-semibold text-sm hover:bg-gray-700/50 transition-colors"
+            >
+              Cancel
+            </button>
+          </div>
+
+          <p class="text-xs text-gray-500 text-center pt-1">
+            By submitting, you agree to receive your January reading via email.
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Success Message -->
+    <div class="px-4 pb-2 hidden" id="successMessage">
+      <div class="bg-gradient-to-br from-green-900/40 to-emerald-900/40 border border-green-500/30 rounded-xl p-4">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0">
+            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-white">Your January Reading is Coming!</h3>
+            <p class="text-xs text-gray-300">Check your email in a few minutes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Input Bar -->
+    <div class="px-4 pb-4 pt-2 border-t border-gray-800">
+      <div class="flex items-center gap-2 bg-gray-900/50 rounded-2xl p-3 border border-gray-700">
+        <button class="w-8 h-8 rounded-xl bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white transition-colors">
+          <span class="text-xl font-light">+</span>
+        </button>
+        <input
+          type="text"
+          placeholder="Ask anything"
+          class="flex-1 bg-transparent text-white placeholder-gray-500 outline-none text-sm"
+        />
+        <button class="w-8 h-8 rounded-xl bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white transition-colors">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 14c1.66 0 2.99-1.34 2.99-3L15 5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm5.3-3c0 3-2.54 5.1-5.3 5.1S6.7 14 6.7 11H5c0 3.41 2.72 6.23 6 6.72V21h2v-3.28c3.28-.48 6-3.3 6-6.72h-1.7z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Form state management
+    function showForm() {
+      document.getElementById('januaryForm').classList.remove('hidden');
+      document.getElementById('successMessage').classList.add('hidden');
+      // Scroll form into view
+      setTimeout(() => {
+        document.getElementById('januaryForm').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 100);
+    }
+
+    function hideForm() {
+      document.getElementById('januaryForm').classList.add('hidden');
+      document.getElementById('successMessage').classList.add('hidden');
+    }
+
+    function showSuccess() {
+      document.getElementById('januaryForm').classList.add('hidden');
+      document.getElementById('successMessage').classList.remove('hidden');
+    }
+
+    // Form submission handler
+    async function handleFormSubmit(event) {
+      event.preventDefault();
+      
+      const email = document.getElementById('form-email').value;
+      const question1 = document.getElementById('form-q1').value;
+      const question2 = document.getElementById('form-q2').value;
+      const question3 = document.getElementById('form-q3').value;
+      const errorDiv = document.getElementById('formError');
+      const submitBtn = document.getElementById('submitBtn');
+      
+      // Validate email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email || !emailRegex.test(email)) {
+        errorDiv.textContent = 'Please enter a valid email address';
+        errorDiv.classList.remove('hidden');
+        return;
+      }
+
+      // Disable submit button
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="flex items-center justify-center gap-2"><svg class="animate-spin h-4 w-4" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Sending...</span>';
+      errorDiv.classList.add('hidden');
+
+      // Prepare form data
+      const formData = {
+        email,
+        question1: question1 || null,
+        question2: question2 || null,
+        question3: question3 || null,
+        source: 'godgpt-mobile-january-reading',
+        timestamp: new Date().toISOString(),
+      };
+
+      // Store locally as backup
+      localStorage.setItem('january_reading_data', JSON.stringify(formData));
+
+      try {
+        // Try to send to backend (if available)
+        try {
+          const response = await fetch('/api/january-reading', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+          });
+
+          if (response.ok) {
+            console.log('Successfully sent to backend');
+          }
+        } catch (apiError) {
+          console.log('Backend endpoint not available, using localStorage fallback');
+        }
+
+        // Show success message
+        showSuccess();
+        
+        // Optional: Auto-hide after 5 seconds
+        setTimeout(() => {
+          hideForm();
+        }, 5000);
+      } catch (err) {
+        errorDiv.textContent = 'Something went wrong. Please try again.';
+        errorDiv.classList.remove('hidden');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Get My January Reading →';
+      }
+    }
+  </script>
+</body>
+</html>
