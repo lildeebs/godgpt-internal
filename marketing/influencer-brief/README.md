@@ -15,35 +15,33 @@ This standalone HTML presentation serves as the master brief for all GodGPT infl
 
 ## 📑 Slide Structure
 
-The deck consists of 11 slides:
+The deck consists of 6 slides (condensed from 11 for better engagement):
 
-1. **Welcome Slide** - Introduction to the master brief
-2. **Why Join** - Benefits of joining the GodGPT affiliate community
-   - Brand association
-   - Commission structure
-   - First access to product launches
-   - Creative freedom
-3. **GodGPT POV** - Why we partner with creators
-   - To amplify creativity
-   - To post authentic content
-   - To engage audiences
-4. **Who Are GodGPT Creators** - Exclusive selection criteria
-   - Creator archetype and characteristics
-   - Target audience and interests
-   - Handpicked selection message
-5. **Content Pillars** - Three core content types:
-   - Personal Stories (TOF)
-   - Reviews (MOF)
-   - How To Use (Conversion)
-6. **Look & Feel - Community Content** - Examples of UGC videos we love
-7. **Success Patterns** - What makes content successful
-   - Strong hooks
-   - Click-baity thumbnails
-   - Engagement drivers
-8. **Content Instructions** - Mandatory tags, hashtags, and guidelines
-9. **Channel Requirements** - Video specifications for TikTok, Instagram Reels, and YouTube Shorts
-10. **DO's & DON'Ts** - Best practices and things to avoid (side by side)
-11. **Contact** - Get started and contact information
+1. **What/Who is GodGPT** - Introduction to GodGPT and creator profile
+   - What is GodGPT (spiritual wellness app)
+   - Who are the GodGPT Creators (creator archetype and audience)
+   - Visual: Contemplative person using GodGPT app
+
+2. **You've Been Handpicked + Why Join** - Exclusive selection and benefits
+   - Handpicked message
+   - Why join our affiliate community (4 key benefits)
+   - Visual: Exclusive selection imagery
+
+3. **Content Strategy** - Comprehensive content guide
+   - Content Pillars (Personal Stories, Reviews, How To Use)
+   - Top Performing Content (links to 3 top videos)
+   - What Makes Content Successful (hooks and thumbnails)
+   - Visual: 4 video example thumbnails
+
+4. **Content Instructions & Requirements** - All mandatory guidelines
+   - Mandatory Tags (social media accounts with icons)
+   - Mandatory Hashtags
+   - Video Requirements (duration, format, quality)
+   - Platform links
+
+5. **DO's & DON'Ts** - Best practices and things to avoid (side by side)
+
+6. **Contact** - Get started and contact information
 
 ## 🚀 Usage
 
