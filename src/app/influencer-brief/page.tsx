@@ -4,7 +4,11 @@ import { useEffect, useState } from 'react';
 
 // Helper to get correct image path with basePath support
 const getImagePath = (imageName: string) => {
-  const basePath = process.env.NODE_ENV === 'production' && process.env.EXPORT_MODE === 'true' ? '/GodGPT-Marketing' : '';
+  if (typeof window === 'undefined') {
+    return `/influencer-brief/${imageName.replace(/ /g, '%20')}`;
+  }
+  const pathname = window.location.pathname;
+  const basePath = pathname.startsWith('/GodGPT-Marketing') ? '/GodGPT-Marketing' : '';
   // URL encode spaces in filename
   const encodedName = imageName.replace(/ /g, '%20');
   return `${basePath}/influencer-brief/${encodedName}`;
