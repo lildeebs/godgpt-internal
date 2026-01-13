@@ -458,8 +458,8 @@ export default function InfluencerBriefPage() {
       <div className={`slide ${currentSlide === 2 ? 'active' : ''}`}>
         <div className="slide-container">
           <div className="grid md:grid-cols-2 gap-8 items-center max-w-6xl mx-auto mb-8">
-            <div className="flex justify-center md:justify-start">
-              <div className="aspect-square w-full max-w-sm overflow-hidden rounded-xl shadow-2xl">
+            <div className="flex justify-center md:justify-start items-start">
+              <div className="aspect-square w-full max-w-md overflow-hidden rounded-xl shadow-2xl" style={{ height: 'fit-content' }}>
                 <img 
                   src={getImagePath('SM_Ethereal_1080 x 1920_5.png')}
                   alt="Beyond Your Belief" 
