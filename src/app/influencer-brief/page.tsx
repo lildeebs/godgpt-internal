@@ -517,6 +517,7 @@ export default function InfluencerBriefPage() {
                 <a href="https://www.tiktok.com/@godgpt_/video/7584702619336051980" target="_blank" rel="noopener noreferrer" className="block text-sm text-purple-300 hover:text-pink-300 underline">Video 1 →</a>
                 <a href="https://www.tiktok.com/@godgpt_/video/7582135504154397970" target="_blank" rel="noopener noreferrer" className="block text-sm text-purple-300 hover:text-pink-300 underline">Video 2 →</a>
                 <a href="https://www.tiktok.com/@godgpt_/photo/7589479608764910866" target="_blank" rel="noopener noreferrer" className="block text-sm text-purple-300 hover:text-pink-300 underline">Video 3 →</a>
+                <a href="https://www.facebook.com/reel/1638065824272188" target="_blank" rel="noopener noreferrer" className="block text-sm text-purple-300 hover:text-pink-300 underline">Video 4 →</a>
               </div>
               <p className="text-xs text-gray-400 mt-3">Study these for inspiration</p>
             </div>
@@ -561,14 +562,14 @@ export default function InfluencerBriefPage() {
                 <p className="text-xs text-white font-semibold">Top Performer #3</p>
               </div>
             </a>
-            <div className="visual-placeholder aspect-[9/16] rounded-xl relative">
-              <div className="absolute inset-0 flex items-center justify-center z-10">
-                <div className="text-center">
-                  <div className="text-3xl mb-2 opacity-50">📱</div>
-                  <p className="text-xs text-gray-500">Add video</p>
-                </div>
+            <a href="https://www.facebook.com/reel/1638065824272188" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer">
+              <div className="absolute inset-0 flex items-center justify-center z-10 opacity-50 group-hover:opacity-100 transition-opacity">
+                <div className="text-3xl mb-2">▶</div>
               </div>
-            </div>
+              <div className="visual-overlay">
+                <p className="text-xs text-white font-semibold">Top Performer #4</p>
+              </div>
+            </a>
           </div>
           <p className="text-xs text-gray-500 opacity-30 text-center mt-8">
             For further enquiries, kindly contact <a href="mailto:dionne.ng@aelf.io" className="hover:text-purple-300 transition-colors">dionne.ng@aelf.io</a>
