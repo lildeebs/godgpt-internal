@@ -501,7 +501,7 @@ export default function InfluencerBriefPage() {
             Content Strategy
           </h2>
           
-          <div className="grid md:grid-cols-3 gap-4 mb-6">
+          <div className="grid md:grid-cols-2 gap-4 mb-8">
             <div className="content-card pillar-card">
               <h3 className="text-xl font-bold mb-3 text-purple-300">Possible Content Pillars</h3>
               <ul className="space-y-2 text-sm text-gray-300">
@@ -509,17 +509,6 @@ export default function InfluencerBriefPage() {
                 <li>• <strong>Reviews</strong> - Share experiences and feedback</li>
                 <li>• <strong>How To Use</strong> - Tutorials, user journey, app functions</li>
               </ul>
-            </div>
-            
-            <div className="content-card">
-              <h3 className="text-xl font-bold mb-3 text-purple-300">Top Performing Content</h3>
-              <div className="space-y-2">
-                <a href="https://www.tiktok.com/@godgpt_/video/7584702619336051980" target="_blank" rel="noopener noreferrer" className="block text-sm text-purple-300 hover:text-pink-300 underline">Video 1 →</a>
-                <a href="https://www.tiktok.com/@godgpt_/video/7582135504154397970" target="_blank" rel="noopener noreferrer" className="block text-sm text-purple-300 hover:text-pink-300 underline">Video 2 →</a>
-                <a href="https://www.tiktok.com/@godgpt_/photo/7589479608764910866" target="_blank" rel="noopener noreferrer" className="block text-sm text-purple-300 hover:text-pink-300 underline">Video 3 →</a>
-                <a href="https://www.facebook.com/reel/1638065824272188" target="_blank" rel="noopener noreferrer" className="block text-sm text-purple-300 hover:text-pink-300 underline">Video 4 →</a>
-              </div>
-              <p className="text-xs text-gray-400 mt-3">Study these for inspiration</p>
             </div>
             
             <div className="content-card bg-purple-500/10">
@@ -535,6 +524,43 @@ export default function InfluencerBriefPage() {
                 </div>
               </div>
             </div>
+          </div>
+          
+          <h3 className="text-3xl md:text-4xl font-bold mb-6 text-center text-purple-300">Top Performing Content</h3>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <a href="https://www.tiktok.com/@godgpt_/video/7584702619336051980" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer">
+              <div className="absolute inset-0 flex items-center justify-center z-10 opacity-50 group-hover:opacity-100 transition-opacity">
+                <div className="text-3xl mb-2">▶</div>
+              </div>
+              <div className="visual-overlay">
+                <p className="text-xs text-white font-semibold">Top Performer #1</p>
+              </div>
+            </a>
+            <a href="https://www.tiktok.com/@godgpt_/video/7582135504154397970" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer">
+              <div className="absolute inset-0 flex items-center justify-center z-10 opacity-50 group-hover:opacity-100 transition-opacity">
+                <div className="text-3xl mb-2">▶</div>
+              </div>
+              <div className="visual-overlay">
+                <p className="text-xs text-white font-semibold">Top Performer #2</p>
+              </div>
+            </a>
+            <a href="https://www.tiktok.com/@godgpt_/photo/7589479608764910866" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer">
+              <div className="absolute inset-0 flex items-center justify-center z-10 opacity-50 group-hover:opacity-100 transition-opacity">
+                <div className="text-3xl mb-2">▶</div>
+              </div>
+              <div className="visual-overlay">
+                <p className="text-xs text-white font-semibold">Top Performer #3</p>
+              </div>
+            </a>
+            <a href="https://www.facebook.com/reel/1638065824272188" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer">
+              <div className="absolute inset-0 flex items-center justify-center z-10 opacity-50 group-hover:opacity-100 transition-opacity">
+                <div className="text-3xl mb-2">▶</div>
+              </div>
+              <div className="visual-overlay">
+                <p className="text-xs text-white font-semibold">Top Performer #4</p>
+              </div>
+            </a>
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
