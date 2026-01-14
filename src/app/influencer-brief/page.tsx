@@ -445,7 +445,7 @@ export default function InfluencerBriefPage() {
                   GodGPT
                 </h1>
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-8 text-white drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
-                  Influencer Content Brief
+                  Creator Content Brief
                 </h2>
               </div>
               <p className="text-xs text-gray-500 opacity-50">Jan 2026</p>
