@@ -21,6 +21,7 @@ const getImagePath = (imageName: string) => {
 export default function InfluencerBriefPage() {
   const [currentSlide, setCurrentSlide] = useState(1);
   const totalSlides = 6;
+  const [thumbnails, setThumbnails] = useState<Record<string, string>>({});
 
   useEffect(() => {
     // Initialize stars
@@ -584,7 +585,7 @@ export default function InfluencerBriefPage() {
           <h3 className="text-3xl md:text-4xl font-bold mb-6 text-center text-purple-300">Top Performing Content</h3>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <a href="https://www.tiktok.com/@godgpt_/video/7584702619336051980" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer overflow-hidden" style={{ backgroundImage: 'url(https://p16-sign-va.tiktokcdn.com/obj/tos-useast2a-p-0037-aiso/7584702619336051980)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            <a href="https://www.tiktok.com/@godgpt_/video/7584702619336051980" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer overflow-hidden" style={{ backgroundImage: thumbnails['https://www.tiktok.com/@godgpt_/video/7584702619336051980'] ? `url(${thumbnails['https://www.tiktok.com/@godgpt_/video/7584702619336051980']})` : 'linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(236, 72, 153, 0.15) 50%, rgba(59, 130, 246, 0.15) 100%)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
               <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 to-pink-900/30 group-hover:from-purple-900/10 group-hover:to-pink-900/10 transition-all" />
               <div className="absolute inset-0 flex items-center justify-center z-10 opacity-50 group-hover:opacity-0 transition-opacity pointer-events-none">
                 <div className="text-3xl mb-2">▶</div>
@@ -602,7 +603,7 @@ export default function InfluencerBriefPage() {
                 </ul>
               </div>
             </a>
-            <a href="https://www.tiktok.com/@godgpt_/video/7582135504154397970" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer overflow-hidden" style={{ backgroundImage: 'url(https://p16-sign-va.tiktokcdn.com/obj/tos-useast2a-p-0037-aiso/7582135504154397970)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            <a href="https://www.tiktok.com/@godgpt_/video/7582135504154397970" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer overflow-hidden" style={{ backgroundImage: thumbnails['https://www.tiktok.com/@godgpt_/video/7582135504154397970'] ? `url(${thumbnails['https://www.tiktok.com/@godgpt_/video/7582135504154397970']})` : 'linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(236, 72, 153, 0.15) 50%, rgba(59, 130, 246, 0.15) 100%)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
               <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 to-pink-900/30 group-hover:from-purple-900/10 group-hover:to-pink-900/10 transition-all" />
               <div className="absolute inset-0 flex items-center justify-center z-10 opacity-50 group-hover:opacity-0 transition-opacity pointer-events-none">
                 <div className="text-3xl mb-2">▶</div>
@@ -620,7 +621,7 @@ export default function InfluencerBriefPage() {
                 </ul>
               </div>
             </a>
-            <a href="https://www.tiktok.com/@godgpt_/photo/7589479608764910866" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer overflow-hidden" style={{ backgroundImage: 'url(https://p16-sign-va.tiktokcdn.com/obj/tos-useast2a-p-0037-aiso/7589479608764910866)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            <a href="https://www.tiktok.com/@godgpt_/photo/7589479608764910866" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer overflow-hidden" style={{ backgroundImage: thumbnails['https://www.tiktok.com/@godgpt_/photo/7589479608764910866'] ? `url(${thumbnails['https://www.tiktok.com/@godgpt_/photo/7589479608764910866']})` : 'linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(236, 72, 153, 0.15) 50%, rgba(59, 130, 246, 0.15) 100%)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
               <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 to-pink-900/30 group-hover:from-purple-900/10 group-hover:to-pink-900/10 transition-all" />
               <div className="absolute inset-0 flex items-center justify-center z-10 opacity-50 group-hover:opacity-0 transition-opacity pointer-events-none">
                 <div className="text-3xl mb-2">▶</div>
@@ -638,7 +639,7 @@ export default function InfluencerBriefPage() {
                 </ul>
               </div>
             </a>
-            <a href="https://www.facebook.com/reel/1638065824272188" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer overflow-hidden" style={{ backgroundImage: 'url(https://scontent.xx.fbcdn.net/v/t15.5256-10/1638065824272188)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            <a href="https://www.facebook.com/reel/1638065824272188" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer overflow-hidden" style={{ backgroundImage: thumbnails['https://www.facebook.com/reel/1638065824272188'] ? `url(${thumbnails['https://www.facebook.com/reel/1638065824272188']})` : 'linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(236, 72, 153, 0.15) 50%, rgba(59, 130, 246, 0.15) 100%)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
               <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 to-pink-900/30 group-hover:from-purple-900/10 group-hover:to-pink-900/10 transition-all" />
               <div className="absolute inset-0 flex items-center justify-center z-10 opacity-50 group-hover:opacity-0 transition-opacity pointer-events-none">
                 <div className="text-3xl mb-2">▶</div>
