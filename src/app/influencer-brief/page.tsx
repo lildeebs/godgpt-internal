@@ -23,6 +23,65 @@ export default function InfluencerBriefPage() {
   const totalSlides = 6;
   const [thumbnails, setThumbnails] = useState<Record<string, string>>({});
 
+  // Fetch video thumbnails using platform APIs
+  useEffect(() => {
+    const fetchThumbnails = async () => {
+      const videoUrls = [
+        'https://www.tiktok.com/@godgpt_/video/7584702619336051980',
+        'https://www.tiktok.com/@godgpt_/video/7582135504154397970',
+        'https://www.tiktok.com/@godgpt_/photo/7589479608764910866',
+        'https://www.facebook.com/reel/1638065824272188'
+      ];
+
+      const thumbnailPromises = videoUrls.map(async (url) => {
+        try {
+          if (url.includes('tiktok.com')) {
+            // TikTok oEmbed API - works without CORS issues
+            const oembedUrl = `https://www.tiktok.com/oembed?url=${encodeURIComponent(url)}`;
+            const response = await fetch(oembedUrl);
+            if (response.ok) {
+              const data = await response.json();
+              return { url, thumbnail: data.thumbnail_url || '' };
+            }
+          } else if (url.includes('facebook.com')) {
+            // Facebook - use oEmbed with CORS proxy
+            const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(`https://graph.facebook.com/v18.0/oembed_video?url=${url}`)}`;
+            try {
+              const response = await fetch(proxyUrl);
+              if (response.ok) {
+                const proxyData = await response.json();
+                const data = JSON.parse(proxyData.contents);
+                if (data.thumbnail_url) {
+                  return { url, thumbnail: data.thumbnail_url };
+                }
+              }
+            } catch (e) {
+              // Fallback: extract video ID and use Graph API pattern
+              const videoId = url.match(/reel\/(\d+)/)?.[1];
+              if (videoId) {
+                return { url, thumbnail: `https://graph.facebook.com/${videoId}/picture?type=large` };
+              }
+            }
+          }
+        } catch (error) {
+          console.log(`Failed to fetch thumbnail for ${url}:`, error);
+        }
+        return { url, thumbnail: '' };
+      });
+
+      const results = await Promise.all(thumbnailPromises);
+      const thumbnailMap: Record<string, string> = {};
+      results.forEach(({ url, thumbnail }) => {
+        if (thumbnail) {
+          thumbnailMap[url] = thumbnail;
+        }
+      });
+      setThumbnails(thumbnailMap);
+    };
+
+    fetchThumbnails();
+  }, []);
+
   useEffect(() => {
     // Initialize stars
     const starsContainer = document.getElementById('stars');
