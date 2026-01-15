@@ -43,33 +43,29 @@ export default function InfluencerBriefPage() {
               return { url, thumbnail: data.thumbnail_url || '' };
             }
           } else if (url.includes('facebook.com')) {
-            // Facebook - extract video ID and try multiple thumbnail methods
+            // Facebook - use public oEmbed endpoint
+            try {
+              // Try Facebook's public oEmbed endpoint first
+              const oembedUrl = `https://www.facebook.com/plugins/video/oembed.json/?url=${encodeURIComponent(url)}`;
+              const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(oembedUrl)}`;
+              
+              const response = await fetch(proxyUrl);
+              if (response.ok) {
+                const proxyData = await response.json();
+                const data = JSON.parse(proxyData.contents);
+                if (data.thumbnail_url) {
+                  return { url, thumbnail: data.thumbnail_url };
+                }
+              }
+            } catch (e) {
+              console.log('Facebook oEmbed failed, trying fallback:', e);
+            }
+            
+            // Fallback: extract video ID and use Graph API pattern
             const videoId = url.match(/reel\/(\d+)/)?.[1];
             if (videoId) {
-              // Try multiple Facebook thumbnail URL patterns
-              const thumbnailUrls = [
-                `https://graph.facebook.com/${videoId}/picture?type=large`,
-                `https://scontent.xx.fbcdn.net/v/t15.5256-10/${videoId}_n.jpg`,
-                `https://scontent.xx.fbcdn.net/v/t15.5256-10/${videoId}_h.jpg`,
-              ];
-              
-              // Try oEmbed with CORS proxy as fallback
-              try {
-                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(`https://graph.facebook.com/v18.0/oembed_video?url=${url}`)}`;
-                const response = await fetch(proxyUrl);
-                if (response.ok) {
-                  const proxyData = await response.json();
-                  const data = JSON.parse(proxyData.contents);
-                  if (data.thumbnail_url) {
-                    return { url, thumbnail: data.thumbnail_url };
-                  }
-                }
-              } catch (e) {
-                // Continue to fallback
-              }
-              
-              // Return first thumbnail URL pattern (will be tested by browser)
-              return { url, thumbnail: thumbnailUrls[0] };
+              // Try Graph API pattern (may require authentication, but worth trying)
+              return { url, thumbnail: `https://graph.facebook.com/${videoId}/picture?type=large` };
             }
           }
         } catch (error) {
