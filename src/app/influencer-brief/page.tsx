@@ -43,23 +43,33 @@ export default function InfluencerBriefPage() {
               return { url, thumbnail: data.thumbnail_url || '' };
             }
           } else if (url.includes('facebook.com')) {
-            // Facebook - use oEmbed with CORS proxy
-            const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(`https://graph.facebook.com/v18.0/oembed_video?url=${url}`)}`;
-            try {
-              const response = await fetch(proxyUrl);
-              if (response.ok) {
-                const proxyData = await response.json();
-                const data = JSON.parse(proxyData.contents);
-                if (data.thumbnail_url) {
-                  return { url, thumbnail: data.thumbnail_url };
+            // Facebook - extract video ID and try multiple thumbnail methods
+            const videoId = url.match(/reel\/(\d+)/)?.[1];
+            if (videoId) {
+              // Try multiple Facebook thumbnail URL patterns
+              const thumbnailUrls = [
+                `https://graph.facebook.com/${videoId}/picture?type=large`,
+                `https://scontent.xx.fbcdn.net/v/t15.5256-10/${videoId}_n.jpg`,
+                `https://scontent.xx.fbcdn.net/v/t15.5256-10/${videoId}_h.jpg`,
+              ];
+              
+              // Try oEmbed with CORS proxy as fallback
+              try {
+                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(`https://graph.facebook.com/v18.0/oembed_video?url=${url}`)}`;
+                const response = await fetch(proxyUrl);
+                if (response.ok) {
+                  const proxyData = await response.json();
+                  const data = JSON.parse(proxyData.contents);
+                  if (data.thumbnail_url) {
+                    return { url, thumbnail: data.thumbnail_url };
+                  }
                 }
+              } catch (e) {
+                // Continue to fallback
               }
-            } catch (e) {
-              // Fallback: extract video ID and use Graph API pattern
-              const videoId = url.match(/reel\/(\d+)/)?.[1];
-              if (videoId) {
-                return { url, thumbnail: `https://graph.facebook.com/${videoId}/picture?type=large` };
-              }
+              
+              // Return first thumbnail URL pattern (will be tested by browser)
+              return { url, thumbnail: thumbnailUrls[0] };
             }
           }
         } catch (error) {
