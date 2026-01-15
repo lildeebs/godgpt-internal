@@ -259,6 +259,14 @@ export default function InfluencerBriefPage() {
           position: relative;
           overflow: hidden;
           border: 1px solid rgba(255, 255, 255, 0.1);
+          background-size: cover;
+          background-position: center;
+        }
+        
+        .visual-placeholder img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
         
         .visual-overlay {
@@ -269,6 +277,53 @@ export default function InfluencerBriefPage() {
           padding: 1.5rem;
           background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.4) 50%, transparent 100%);
           border-radius: 0 0 0.75rem 0.75rem;
+        }
+        
+        .video-hover-info {
+          position: absolute;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.9);
+          backdrop-filter: blur(10px);
+          padding: 1.5rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          border-radius: 0.75rem;
+          z-index: 20;
+        }
+        
+        .group:hover .video-hover-info {
+          opacity: 1;
+        }
+        
+        .video-hover-info h4 {
+          font-size: 1rem;
+          font-weight: 700;
+          color: #c084fc;
+          margin-bottom: 0.75rem;
+        }
+        
+        .video-hover-info ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+        
+        .video-hover-info li {
+          font-size: 0.875rem;
+          color: #e5e7eb;
+          margin-bottom: 0.5rem;
+          padding-left: 1rem;
+          position: relative;
+        }
+        
+        .video-hover-info li:before {
+          content: "•";
+          position: absolute;
+          left: 0;
+          color: #c084fc;
         }
         
         .nav-dots {
@@ -529,71 +584,76 @@ export default function InfluencerBriefPage() {
           <h3 className="text-3xl md:text-4xl font-bold mb-6 text-center text-purple-300">Top Performing Content</h3>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <a href="https://www.tiktok.com/@godgpt_/video/7584702619336051980" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer">
-              <div className="absolute inset-0 flex items-center justify-center z-10 opacity-50 group-hover:opacity-100 transition-opacity">
+            <a href="https://www.tiktok.com/@godgpt_/video/7584702619336051980" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer overflow-hidden" style={{ backgroundImage: 'url(https://p16-sign-va.tiktokcdn.com/obj/tos-useast2a-p-0037-aiso/7584702619336051980)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 to-pink-900/30 group-hover:from-purple-900/10 group-hover:to-pink-900/10 transition-all" />
+              <div className="absolute inset-0 flex items-center justify-center z-10 opacity-50 group-hover:opacity-0 transition-opacity pointer-events-none">
                 <div className="text-3xl mb-2">▶</div>
               </div>
-              <div className="visual-overlay">
+              <div className="visual-overlay group-hover:opacity-0 transition-opacity">
                 <p className="text-xs text-white font-semibold">Top Performer #1</p>
               </div>
+              <div className="video-hover-info">
+                <h4>Why It Performed</h4>
+                <ul>
+                  <li>Strong hook in first 3 seconds</li>
+                  <li>High engagement rate</li>
+                  <li>Click-bait thumbnail</li>
+                  <li>High completion rate</li>
+                </ul>
+              </div>
             </a>
-            <a href="https://www.tiktok.com/@godgpt_/video/7582135504154397970" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer">
-              <div className="absolute inset-0 flex items-center justify-center z-10 opacity-50 group-hover:opacity-100 transition-opacity">
+            <a href="https://www.tiktok.com/@godgpt_/video/7582135504154397970" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer overflow-hidden" style={{ backgroundImage: 'url(https://p16-sign-va.tiktokcdn.com/obj/tos-useast2a-p-0037-aiso/7582135504154397970)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 to-pink-900/30 group-hover:from-purple-900/10 group-hover:to-pink-900/10 transition-all" />
+              <div className="absolute inset-0 flex items-center justify-center z-10 opacity-50 group-hover:opacity-0 transition-opacity pointer-events-none">
                 <div className="text-3xl mb-2">▶</div>
               </div>
-              <div className="visual-overlay">
+              <div className="visual-overlay group-hover:opacity-0 transition-opacity">
                 <p className="text-xs text-white font-semibold">Top Performer #2</p>
               </div>
+              <div className="video-hover-info">
+                <h4>Why It Performed</h4>
+                <ul>
+                  <li>Effective hook strategy</li>
+                  <li>High share rate</li>
+                  <li>Relatable content</li>
+                  <li>Strong watch time</li>
+                </ul>
+              </div>
             </a>
-            <a href="https://www.tiktok.com/@godgpt_/photo/7589479608764910866" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer">
-              <div className="absolute inset-0 flex items-center justify-center z-10 opacity-50 group-hover:opacity-100 transition-opacity">
+            <a href="https://www.tiktok.com/@godgpt_/photo/7589479608764910866" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer overflow-hidden" style={{ backgroundImage: 'url(https://p16-sign-va.tiktokcdn.com/obj/tos-useast2a-p-0037-aiso/7589479608764910866)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 to-pink-900/30 group-hover:from-purple-900/10 group-hover:to-pink-900/10 transition-all" />
+              <div className="absolute inset-0 flex items-center justify-center z-10 opacity-50 group-hover:opacity-0 transition-opacity pointer-events-none">
                 <div className="text-3xl mb-2">▶</div>
               </div>
-              <div className="visual-overlay">
+              <div className="visual-overlay group-hover:opacity-0 transition-opacity">
                 <p className="text-xs text-white font-semibold">Top Performer #3</p>
               </div>
+              <div className="video-hover-info">
+                <h4>Why It Performed</h4>
+                <ul>
+                  <li>Visual storytelling</li>
+                  <li>High save rate</li>
+                  <li>Text overlay clarity</li>
+                  <li>Format diversity</li>
+                </ul>
+              </div>
             </a>
-            <a href="https://www.facebook.com/reel/1638065824272188" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer">
-              <div className="absolute inset-0 flex items-center justify-center z-10 opacity-50 group-hover:opacity-100 transition-opacity">
+            <a href="https://www.facebook.com/reel/1638065824272188" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer overflow-hidden" style={{ backgroundImage: 'url(https://scontent.xx.fbcdn.net/v/t15.5256-10/1638065824272188)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 to-pink-900/30 group-hover:from-purple-900/10 group-hover:to-pink-900/10 transition-all" />
+              <div className="absolute inset-0 flex items-center justify-center z-10 opacity-50 group-hover:opacity-0 transition-opacity pointer-events-none">
                 <div className="text-3xl mb-2">▶</div>
               </div>
-              <div className="visual-overlay">
+              <div className="visual-overlay group-hover:opacity-0 transition-opacity">
                 <p className="text-xs text-white font-semibold">Top Performer #4</p>
               </div>
-            </a>
-          </div>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <a href="https://www.tiktok.com/@godgpt_/video/7584702619336051980" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer">
-              <div className="absolute inset-0 flex items-center justify-center z-10 opacity-50 group-hover:opacity-100 transition-opacity">
-                <div className="text-3xl mb-2">▶</div>
-              </div>
-              <div className="visual-overlay">
-                <p className="text-xs text-white font-semibold">Top Performer #1</p>
-              </div>
-            </a>
-            <a href="https://www.tiktok.com/@godgpt_/video/7582135504154397970" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer">
-              <div className="absolute inset-0 flex items-center justify-center z-10 opacity-50 group-hover:opacity-100 transition-opacity">
-                <div className="text-3xl mb-2">▶</div>
-              </div>
-              <div className="visual-overlay">
-                <p className="text-xs text-white font-semibold">Top Performer #2</p>
-              </div>
-            </a>
-            <a href="https://www.tiktok.com/@godgpt_/photo/7589479608764910866" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer">
-              <div className="absolute inset-0 flex items-center justify-center z-10 opacity-50 group-hover:opacity-100 transition-opacity">
-                <div className="text-3xl mb-2">▶</div>
-              </div>
-              <div className="visual-overlay">
-                <p className="text-xs text-white font-semibold">Top Performer #3</p>
-              </div>
-            </a>
-            <a href="https://www.facebook.com/reel/1638065824272188" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer">
-              <div className="absolute inset-0 flex items-center justify-center z-10 opacity-50 group-hover:opacity-100 transition-opacity">
-                <div className="text-3xl mb-2">▶</div>
-              </div>
-              <div className="visual-overlay">
-                <p className="text-xs text-white font-semibold">Top Performer #4</p>
+              <div className="video-hover-info">
+                <h4>Why It Performed</h4>
+                <ul>
+                  <li>Cross-platform success</li>
+                  <li>High engagement</li>
+                  <li>Platform optimization</li>
+                  <li>Strong performance metrics</li>
+                </ul>
               </div>
             </a>
           </div>
