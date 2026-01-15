@@ -31,6 +31,11 @@ export default function InfluencerBriefPage() {
         'https://www.tiktok.com/@godgpt_/video/7582135504154397970',
         'https://www.facebook.com/reel/1638065824272188'
       ];
+      
+      // Manual fallback thumbnail for Facebook reel (if API fails)
+      const manualThumbnails: Record<string, string> = {
+        'https://www.facebook.com/reel/1638065824272188': '' // Will be set if we can find the actual URL
+      };
 
       const thumbnailPromises = videoUrls.map(async (url) => {
         try {
@@ -91,10 +96,50 @@ export default function InfluencerBriefPage() {
               console.log('Alternative proxy failed:', e);
             }
             
-            // Method 4: Fallback - try to construct thumbnail URL from video ID
+            // Method 4: Try embed.ly (reliable embed service)
+            try {
+              const embedlyUrl = `https://api.embed.ly/1/oembed?url=${encodeURIComponent(url)}&key=YOUR_API_KEY`;
+              // Try without API key first (may have limited functionality)
+              const embedlyFreeUrl = `https://noembed.com/embed?url=${encodeURIComponent(url)}`;
+              const response = await fetch(embedlyFreeUrl);
+              if (response.ok) {
+                const data = await response.json();
+                if (data.thumbnail_url) {
+                  return { url, thumbnail: data.thumbnail_url };
+                }
+              }
+            } catch (e) {
+              console.log('embed.ly/noembed failed:', e);
+            }
+            
+            // Method 5: Try extracting from Facebook page directly via proxy
+            try {
+              const pageUrl = `https://www.facebook.com/reel/${videoId}`;
+              const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(pageUrl)}`;
+              const response = await fetch(proxyUrl);
+              if (response.ok) {
+                const proxyData = await response.json();
+                const html = proxyData.contents;
+                // Try to extract og:image from meta tags
+                const ogImageMatch = html.match(/<meta\s+property=["']og:image["']\s+content=["']([^"']+)["']/i);
+                if (ogImageMatch && ogImageMatch[1]) {
+                  return { url, thumbnail: ogImageMatch[1] };
+                }
+              }
+            } catch (e) {
+              console.log('Direct page extraction failed:', e);
+            }
+            
+            // Method 5: Manual fallback - try common Facebook CDN patterns
             if (videoId) {
-              // Facebook sometimes serves thumbnails at this pattern
-              return { url, thumbnail: `https://scontent.xx.fbcdn.net/v/t15.5256-10/${videoId}_n.jpg` };
+              // Try multiple Facebook CDN thumbnail patterns
+              const cdnPatterns = [
+                `https://scontent.xx.fbcdn.net/v/t15.5256-10/${videoId}_n.jpg`,
+                `https://scontent.xx.fbcdn.net/v/t15.5256-10/${videoId}_h.jpg`,
+                `https://scontent.xx.fbcdn.net/v/t15.5256-10/${videoId}_s.jpg`,
+              ];
+              // Return first pattern (browser will try to load it)
+              return { url, thumbnail: cdnPatterns[0] };
             }
           }
         } catch (error) {
@@ -108,6 +153,9 @@ export default function InfluencerBriefPage() {
       results.forEach(({ url, thumbnail }) => {
         if (thumbnail) {
           thumbnailMap[url] = thumbnail;
+        } else if (manualThumbnails[url]) {
+          // Use manual fallback if API failed
+          thumbnailMap[url] = manualThumbnails[url];
         }
       });
       setThumbnails(thumbnailMap);
