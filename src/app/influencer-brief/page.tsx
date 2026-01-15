@@ -34,7 +34,7 @@ export default function InfluencerBriefPage() {
       
       // Manual fallback thumbnail for Facebook reel (if API fails)
       const manualThumbnails: Record<string, string> = {
-        'https://www.facebook.com/reel/1638065824272188': '' // Will be set if we can find the actual URL
+        'https://www.facebook.com/reel/1638065824272188': 'https://scontent.fsin11-1.fna.fbcdn.net/v/t51.82787-15/605353790_17867245026518564_5057166070766941322_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=a27664&_nc_ohc=djHjOZdEKbIQ7kNvwGRS3Ys&_nc_oc=Adkq5q8hhkDXStWPM_AvdcbVj__NX8unrk9Y2oXuLD-BsThJgYrlvFHwcvoUGF-4Dwc&_nc_zt=23&_nc_ht=scontent.fsin11-1.fna&_nc_gid=jdUvqdrsjLkmR5q9cojT7Q&oh=00_AfoMGv_qVJdGXgGkI6VtSIymSS5gaYOL6WEk91JobBisxw&oe=696E750E'
       };
 
       const thumbnailPromises = videoUrls.map(async (url) => {
@@ -120,14 +120,26 @@ export default function InfluencerBriefPage() {
               if (response.ok) {
                 const proxyData = await response.json();
                 const html = proxyData.contents;
-                // Try to extract og:image from meta tags
+                // Try to extract og:image from meta tags (handle HTML entities)
                 const ogImageMatch = html.match(/<meta\s+property=["']og:image["']\s+content=["']([^"']+)["']/i);
                 if (ogImageMatch && ogImageMatch[1]) {
-                  return { url, thumbnail: ogImageMatch[1] };
+                  // Decode HTML entities
+                  const thumbnailUrl = ogImageMatch[1]
+                    .replace(/&amp;/g, '&')
+                    .replace(/&lt;/g, '<')
+                    .replace(/&gt;/g, '>')
+                    .replace(/&quot;/g, '"')
+                    .replace(/&#39;/g, "'");
+                  return { url, thumbnail: thumbnailUrl };
                 }
               }
             } catch (e) {
               console.log('Direct page extraction failed:', e);
+            }
+            
+            // Method 6: Use manual fallback if available
+            if (manualThumbnails[url]) {
+              return { url, thumbnail: manualThumbnails[url] };
             }
             
             // Method 5: Manual fallback - try common Facebook CDN patterns
