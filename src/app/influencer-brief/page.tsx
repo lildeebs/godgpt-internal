@@ -23,7 +23,7 @@ export default function InfluencerBriefPage() {
   const totalSlides = 6;
   const [thumbnails, setThumbnails] = useState<Record<string, string>>({});
 
-  // Fetch video thumbnails using platform APIs
+  // Fetch video thumbnails using platform APIs - optimized for speed
   useEffect(() => {
     const fetchThumbnails = async () => {
       const videoUrls = [
@@ -32,145 +32,66 @@ export default function InfluencerBriefPage() {
         'https://www.facebook.com/reel/1638065824272188'
       ];
       
-      // Manual fallback thumbnail for Facebook reel (if API fails)
+      // Manual thumbnails - use immediately (no API call needed, instant display)
       const manualThumbnails: Record<string, string> = {
         'https://www.facebook.com/reel/1638065824272188': 'https://scontent.fsin11-1.fna.fbcdn.net/v/t51.82787-15/605353790_17867245026518564_5057166070766941322_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=a27664&_nc_ohc=djHjOZdEKbIQ7kNvwGRS3Ys&_nc_oc=Adkq5q8hhkDXStWPM_AvdcbVj__NX8unrk9Y2oXuLD-BsThJgYrlvFHwcvoUGF-4Dwc&_nc_zt=23&_nc_ht=scontent.fsin11-1.fna&_nc_gid=jdUvqdrsjLkmR5q9cojT7Q&oh=00_AfoMGv_qVJdGXgGkI6VtSIymSS5gaYOL6WEk91JobBisxw&oe=696E750E'
       };
 
-      const thumbnailPromises = videoUrls.map(async (url) => {
-        try {
-          if (url.includes('tiktok.com')) {
-            // TikTok oEmbed API - works without CORS issues
-            const oembedUrl = `https://www.tiktok.com/oembed?url=${encodeURIComponent(url)}`;
-            const response = await fetch(oembedUrl);
-            if (response.ok) {
-              const data = await response.json();
-              return { url, thumbnail: data.thumbnail_url || '' };
-            }
-          } else if (url.includes('facebook.com')) {
-            // Facebook - try multiple methods
-            const videoId = url.match(/reel\/(\d+)/)?.[1];
-            
-            // Method 1: Use noembed.com (reliable oEmbed proxy)
-            try {
-              const noembedUrl = `https://noembed.com/embed?url=${encodeURIComponent(url)}`;
-              const response = await fetch(noembedUrl);
-              if (response.ok) {
-                const data = await response.json();
-                if (data.thumbnail_url) {
-                  return { url, thumbnail: data.thumbnail_url };
-                }
-              }
-            } catch (e) {
-              console.log('noembed.com failed:', e);
-            }
-            
-            // Method 2: Try Facebook's oEmbed with CORS proxy
-            try {
-              const oembedUrl = `https://www.facebook.com/plugins/video/oembed.json/?url=${encodeURIComponent(url)}`;
-              const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(oembedUrl)}`;
-              const response = await fetch(proxyUrl);
-              if (response.ok) {
-                const proxyData = await response.json();
-                const data = JSON.parse(proxyData.contents);
-                if (data.thumbnail_url) {
-                  return { url, thumbnail: data.thumbnail_url };
-                }
-              }
-            } catch (e) {
-              console.log('Facebook oEmbed with proxy failed:', e);
-            }
-            
-            // Method 3: Try alternative CORS proxy
-            try {
-              const oembedUrl = `https://www.facebook.com/plugins/video/oembed.json/?url=${encodeURIComponent(url)}`;
-              const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(oembedUrl)}`;
-              const response = await fetch(proxyUrl);
-              if (response.ok) {
-                const data = await response.json();
-                if (data.thumbnail_url) {
-                  return { url, thumbnail: data.thumbnail_url };
-                }
-              }
-            } catch (e) {
-              console.log('Alternative proxy failed:', e);
-            }
-            
-            // Method 4: Try embed.ly (reliable embed service)
-            try {
-              const embedlyUrl = `https://api.embed.ly/1/oembed?url=${encodeURIComponent(url)}&key=YOUR_API_KEY`;
-              // Try without API key first (may have limited functionality)
-              const embedlyFreeUrl = `https://noembed.com/embed?url=${encodeURIComponent(url)}`;
-              const response = await fetch(embedlyFreeUrl);
-              if (response.ok) {
-                const data = await response.json();
-                if (data.thumbnail_url) {
-                  return { url, thumbnail: data.thumbnail_url };
-                }
-              }
-            } catch (e) {
-              console.log('embed.ly/noembed failed:', e);
-            }
-            
-            // Method 5: Try extracting from Facebook page directly via proxy
-            try {
-              const pageUrl = `https://www.facebook.com/reel/${videoId}`;
-              const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(pageUrl)}`;
-              const response = await fetch(proxyUrl);
-              if (response.ok) {
-                const proxyData = await response.json();
-                const html = proxyData.contents;
-                // Try to extract og:image from meta tags (handle HTML entities)
-                const ogImageMatch = html.match(/<meta\s+property=["']og:image["']\s+content=["']([^"']+)["']/i);
-                if (ogImageMatch && ogImageMatch[1]) {
-                  // Decode HTML entities
-                  const thumbnailUrl = ogImageMatch[1]
-                    .replace(/&amp;/g, '&')
-                    .replace(/&lt;/g, '<')
-                    .replace(/&gt;/g, '>')
-                    .replace(/&quot;/g, '"')
-                    .replace(/&#39;/g, "'");
-                  return { url, thumbnail: thumbnailUrl };
-                }
-              }
-            } catch (e) {
-              console.log('Direct page extraction failed:', e);
-            }
-            
-            // Method 6: Use manual fallback if available
-            if (manualThumbnails[url]) {
-              return { url, thumbnail: manualThumbnails[url] };
-            }
-            
-            // Method 5: Manual fallback - try common Facebook CDN patterns
-            if (videoId) {
-              // Try multiple Facebook CDN thumbnail patterns
-              const cdnPatterns = [
-                `https://scontent.xx.fbcdn.net/v/t15.5256-10/${videoId}_n.jpg`,
-                `https://scontent.xx.fbcdn.net/v/t15.5256-10/${videoId}_h.jpg`,
-                `https://scontent.xx.fbcdn.net/v/t15.5256-10/${videoId}_s.jpg`,
-              ];
-              // Return first pattern (browser will try to load it)
-              return { url, thumbnail: cdnPatterns[0] };
-            }
-          }
-        } catch (error) {
-          console.log(`Failed to fetch thumbnail for ${url}:`, error);
+      // Set manual thumbnails immediately (instant display, zero delay)
+      const initialThumbnails: Record<string, string> = {};
+      videoUrls.forEach(url => {
+        if (manualThumbnails[url]) {
+          initialThumbnails[url] = manualThumbnails[url];
         }
-        return { url, thumbnail: '' };
       });
+      setThumbnails(initialThumbnails);
 
-      const results = await Promise.all(thumbnailPromises);
-      const thumbnailMap: Record<string, string> = {};
-      results.forEach(({ url, thumbnail }) => {
-        if (thumbnail) {
-          thumbnailMap[url] = thumbnail;
-        } else if (manualThumbnails[url]) {
-          // Use manual fallback if API failed
-          thumbnailMap[url] = manualThumbnails[url];
+      // Helper: Add timeout to fetch requests (prevent hanging)
+      const fetchWithTimeout = (url: string, timeout = 2000): Promise<Response> => {
+        return Promise.race([
+          fetch(url),
+          new Promise<Response>((_, reject) => 
+            setTimeout(() => reject(new Error('Timeout')), timeout)
+          )
+        ]);
+      };
+
+      // Fetch remaining thumbnails (TikTok only - Facebook already set)
+      const thumbnailPromises = videoUrls
+        .filter(url => !manualThumbnails[url]) // Skip URLs with manual thumbnails
+        .map(async (url) => {
+          try {
+            if (url.includes('tiktok.com')) {
+              // TikTok oEmbed API - fast and reliable
+              const oembedUrl = `https://www.tiktok.com/oembed?url=${encodeURIComponent(url)}`;
+              const response = await fetchWithTimeout(oembedUrl, 2000);
+              if (response.ok) {
+                const data = await response.json();
+                if (data.thumbnail_url) {
+                  return { url, thumbnail: data.thumbnail_url };
+                }
+              }
+            }
+          } catch (error) {
+            console.log(`Failed to fetch thumbnail for ${url}:`, error);
+          }
+          return { url, thumbnail: '' };
+        });
+
+      // Update thumbnails as they become available (don't wait for all)
+      const results = await Promise.allSettled(thumbnailPromises);
+      const thumbnailMap: Record<string, string> = { ...initialThumbnails };
+      
+      results.forEach((result) => {
+        if (result.status === 'fulfilled' && result.value.thumbnail) {
+          thumbnailMap[result.value.url] = result.value.thumbnail;
         }
       });
-      setThumbnails(thumbnailMap);
+      
+      // Only update if we got new thumbnails (avoid unnecessary re-renders)
+      if (Object.keys(thumbnailMap).length > Object.keys(initialThumbnails).length) {
+        setThumbnails(thumbnailMap);
+      }
     };
 
     fetchThumbnails();
