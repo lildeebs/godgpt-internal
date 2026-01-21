@@ -56,13 +56,55 @@ export default function InfluencerBriefPage() {
         ]);
       };
 
-      // Fetch remaining thumbnails (TikTok only - Facebook already set)
-      const thumbnailPromises = videoUrls
-        .filter(url => !manualThumbnails[url]) // Skip URLs with manual thumbnails
-        .map(async (url) => {
-          try {
-            if (url.includes('tiktok.com')) {
-              // TikTok oEmbed API - fast and reliable
+      // Verify manual thumbnails load, and fetch fresh ones if needed
+      const verifyAndFetchThumbnails = async () => {
+        const thumbnailPromises = videoUrls.map(async (url) => {
+          // If we have a manual thumbnail, verify it loads
+          if (manualThumbnails[url]) {
+            try {
+              const img = new Image();
+              await new Promise((resolve, reject) => {
+                img.onload = resolve;
+                img.onerror = reject;
+                img.src = manualThumbnails[url];
+                setTimeout(() => reject(new Error('Timeout')), 3000);
+              });
+              // Manual thumbnail loaded successfully
+              return { url, thumbnail: manualThumbnails[url] };
+            } catch (e) {
+              // Manual thumbnail failed, try to fetch fresh one
+              console.log('Manual thumbnail failed, fetching fresh:', url);
+              if (url.includes('facebook.com')) {
+                try {
+                  const pageUrl = `https://www.facebook.com/reel/${url.match(/reel\/(\d+)/)?.[1]}`;
+                  const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(pageUrl)}`;
+                  const response = await fetchWithTimeout(proxyUrl, 3000);
+                  if (response.ok) {
+                    const proxyData = await response.json();
+                    const html = proxyData.contents;
+                    const ogImageMatch = html.match(/<meta\s+property=["']og:image["']\s+content=["']([^"']+)["']/i);
+                    if (ogImageMatch && ogImageMatch[1]) {
+                      const thumbnailUrl = ogImageMatch[1]
+                        .replace(/&amp;/g, '&')
+                        .replace(/&lt;/g, '<')
+                        .replace(/&gt;/g, '>')
+                        .replace(/&quot;/g, '"')
+                        .replace(/&#39;/g, "'");
+                      return { url, thumbnail: thumbnailUrl };
+                    }
+                  }
+                } catch (err) {
+                  console.log('Failed to fetch fresh Facebook thumbnail:', err);
+                }
+              }
+              // Return manual thumbnail anyway (might work in some browsers)
+              return { url, thumbnail: manualThumbnails[url] };
+            }
+          }
+          
+          // Fetch TikTok thumbnails
+          if (url.includes('tiktok.com')) {
+            try {
               const oembedUrl = `https://www.tiktok.com/oembed?url=${encodeURIComponent(url)}`;
               const response = await fetchWithTimeout(oembedUrl, 2000);
               if (response.ok) {
@@ -71,12 +113,18 @@ export default function InfluencerBriefPage() {
                   return { url, thumbnail: data.thumbnail_url };
                 }
               }
+            } catch (error) {
+              console.log(`Failed to fetch thumbnail for ${url}:`, error);
             }
-          } catch (error) {
-            console.log(`Failed to fetch thumbnail for ${url}:`, error);
           }
+          
           return { url, thumbnail: '' };
         });
+        
+        return thumbnailPromises;
+      };
+
+      const thumbnailPromises = await verifyAndFetchThumbnails();
 
       // Update thumbnails as they become available (don't wait for all)
       const results = await Promise.allSettled(thumbnailPromises);
