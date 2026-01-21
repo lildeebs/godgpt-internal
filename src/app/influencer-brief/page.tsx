@@ -23,7 +23,7 @@ export default function InfluencerBriefPage() {
   const totalSlides = 6;
   const [thumbnails, setThumbnails] = useState<Record<string, string>>({});
 
-  // Fetch video thumbnails using platform APIs - optimized for speed
+  // Fetch video thumbnails dynamically - always fresh, never expires
   useEffect(() => {
     const fetchThumbnails = async () => {
       const videoUrls = [
@@ -31,23 +31,9 @@ export default function InfluencerBriefPage() {
         'https://www.tiktok.com/@godgpt_/video/7582135504154397970',
         'https://www.facebook.com/reel/1638065824272188'
       ];
-      
-      // Manual thumbnails - use immediately (no API call needed, instant display)
-      const manualThumbnails: Record<string, string> = {
-        'https://www.facebook.com/reel/1638065824272188': 'https://scontent.fsin11-1.fna.fbcdn.net/v/t51.82787-15/605353790_17867245026518564_5057166070766941322_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=a27664&_nc_ohc=vDDX88VPk4gQ7kNvwEjijXM&_nc_oc=AdmeGL2GuJ186KbzA1ovIoc84xuuOFN8b-K7MYYs4Js20iWhof_72Oh3AdJ_66dWLgw&_nc_zt=23&_nc_ht=scontent.fsin11-1.fna&_nc_gid=PTPmbbupeuiniVjhvJzq0g&oh=00_AfrR3rQ3Ed92xlVb6FwNW1aHsGiYMgimqLyuiEywEKKEWQ&oe=697625CE'
-      };
-
-      // Set manual thumbnails immediately (instant display, zero delay)
-      const initialThumbnails: Record<string, string> = {};
-      videoUrls.forEach(url => {
-        if (manualThumbnails[url]) {
-          initialThumbnails[url] = manualThumbnails[url];
-        }
-      });
-      setThumbnails(initialThumbnails);
 
       // Helper: Add timeout to fetch requests (prevent hanging)
-      const fetchWithTimeout = (url: string, timeout = 2000): Promise<Response> => {
+      const fetchWithTimeout = (url: string, timeout = 3000): Promise<Response> => {
         return Promise.race([
           fetch(url),
           new Promise<Response>((_, reject) => 
@@ -56,79 +42,95 @@ export default function InfluencerBriefPage() {
         ]);
       };
 
-      // Verify manual thumbnails load, and fetch fresh ones if needed
-      const verifyAndFetchThumbnails = async () => {
-        const thumbnailPromises = videoUrls.map(async (url) => {
-          // If we have a manual thumbnail, verify it loads
-          if (manualThumbnails[url]) {
-            try {
-              const img = new Image();
-              await new Promise((resolve, reject) => {
-                img.onload = resolve;
-                img.onerror = reject;
-                img.src = manualThumbnails[url];
-                setTimeout(() => reject(new Error('Timeout')), 3000);
-              });
-              // Manual thumbnail loaded successfully
-              return { url, thumbnail: manualThumbnails[url] };
-            } catch (e) {
-              // Manual thumbnail failed, try to fetch fresh one
-              console.log('Manual thumbnail failed, fetching fresh:', url);
-              if (url.includes('facebook.com')) {
-                try {
-                  const pageUrl = `https://www.facebook.com/reel/${url.match(/reel\/(\d+)/)?.[1]}`;
-                  const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(pageUrl)}`;
-                  const response = await fetchWithTimeout(proxyUrl, 3000);
-                  if (response.ok) {
-                    const proxyData = await response.json();
-                    const html = proxyData.contents;
-                    const ogImageMatch = html.match(/<meta\s+property=["']og:image["']\s+content=["']([^"']+)["']/i);
-                    if (ogImageMatch && ogImageMatch[1]) {
-                      const thumbnailUrl = ogImageMatch[1]
-                        .replace(/&amp;/g, '&')
-                        .replace(/&lt;/g, '<')
-                        .replace(/&gt;/g, '>')
-                        .replace(/&quot;/g, '"')
-                        .replace(/&#39;/g, "'");
-                      return { url, thumbnail: thumbnailUrl };
-                    }
-                  }
-                } catch (err) {
-                  console.log('Failed to fetch fresh Facebook thumbnail:', err);
-                }
-              }
-              // Return manual thumbnail anyway (might work in some browsers)
-              return { url, thumbnail: manualThumbnails[url] };
-            }
-          }
-          
-          // Fetch TikTok thumbnails
+      // Fetch all thumbnails dynamically (always fresh, never expires)
+      const thumbnailPromises = videoUrls.map(async (url) => {
+        try {
           if (url.includes('tiktok.com')) {
-            try {
-              const oembedUrl = `https://www.tiktok.com/oembed?url=${encodeURIComponent(url)}`;
-              const response = await fetchWithTimeout(oembedUrl, 2000);
-              if (response.ok) {
-                const data = await response.json();
-                if (data.thumbnail_url) {
-                  return { url, thumbnail: data.thumbnail_url };
-                }
+            // TikTok oEmbed API - fast and reliable
+            const oembedUrl = `https://www.tiktok.com/oembed?url=${encodeURIComponent(url)}`;
+            const response = await fetchWithTimeout(oembedUrl, 2000);
+            if (response.ok) {
+              const data = await response.json();
+              if (data.thumbnail_url) {
+                return { url, thumbnail: data.thumbnail_url };
               }
-            } catch (error) {
-              console.log(`Failed to fetch thumbnail for ${url}:`, error);
+            }
+          } else if (url.includes('facebook.com')) {
+            // Facebook - always fetch fresh from page metadata (never expires)
+            const videoId = url.match(/reel\/(\d+)/)?.[1];
+            if (!videoId) return { url, thumbnail: '' };
+
+            // Method 1: Extract from Facebook page via proxy (most reliable)
+            const methods = [
+              async () => {
+                const pageUrl = `https://www.facebook.com/reel/${videoId}`;
+                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(pageUrl)}`;
+                const response = await fetchWithTimeout(proxyUrl, 3000);
+                if (response.ok) {
+                  const proxyData = await response.json();
+                  const html = proxyData.contents;
+                  const ogImageMatch = html.match(/<meta\s+property=["']og:image["']\s+content=["']([^"']+)["']/i);
+                  if (ogImageMatch && ogImageMatch[1]) {
+                    return ogImageMatch[1]
+                      .replace(/&amp;/g, '&')
+                      .replace(/&lt;/g, '<')
+                      .replace(/&gt;/g, '>')
+                      .replace(/&quot;/g, '"')
+                      .replace(/&#39;/g, "'");
+                  }
+                }
+                return null;
+              },
+              // Method 2: Try alternative proxy
+              async () => {
+                const pageUrl = `https://www.facebook.com/reel/${videoId}`;
+                const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(pageUrl)}`;
+                const response = await fetchWithTimeout(proxyUrl, 3000);
+                if (response.ok) {
+                  const html = await response.text();
+                  const ogImageMatch = html.match(/<meta\s+property=["']og:image["']\s+content=["']([^"']+)["']/i);
+                  if (ogImageMatch && ogImageMatch[1]) {
+                    return ogImageMatch[1]
+                      .replace(/&amp;/g, '&')
+                      .replace(/&lt;/g, '<')
+                      .replace(/&gt;/g, '>')
+                      .replace(/&quot;/g, '"')
+                      .replace(/&#39;/g, "'");
+                  }
+                }
+                return null;
+              },
+              // Method 3: Try noembed.com
+              async () => {
+                const noembedUrl = `https://noembed.com/embed?url=${encodeURIComponent(url)}`;
+                const response = await fetchWithTimeout(noembedUrl, 2000);
+                if (response.ok) {
+                  const data = await response.json();
+                  if (data.thumbnail_url) {
+                    return data.thumbnail_url;
+                  }
+                }
+                return null;
+              }
+            ];
+
+            // Try all methods in parallel, return first successful result
+            const results = await Promise.allSettled(methods.map(m => m()));
+            for (const result of results) {
+              if (result.status === 'fulfilled' && result.value) {
+                return { url, thumbnail: result.value };
+              }
             }
           }
-          
-          return { url, thumbnail: '' };
-        });
-        
-        return thumbnailPromises;
-      };
+        } catch (error) {
+          console.log(`Failed to fetch thumbnail for ${url}:`, error);
+        }
+        return { url, thumbnail: '' };
+      });
 
-      const thumbnailPromises = await verifyAndFetchThumbnails();
-
-      // Update thumbnails as they become available (don't wait for all)
+      // Fetch all thumbnails in parallel and update as they arrive
       const results = await Promise.allSettled(thumbnailPromises);
-      const thumbnailMap: Record<string, string> = { ...initialThumbnails };
+      const thumbnailMap: Record<string, string> = {};
       
       results.forEach((result) => {
         if (result.status === 'fulfilled' && result.value.thumbnail) {
@@ -136,10 +138,7 @@ export default function InfluencerBriefPage() {
         }
       });
       
-      // Only update if we got new thumbnails (avoid unnecessary re-renders)
-      if (Object.keys(thumbnailMap).length > Object.keys(initialThumbnails).length) {
-        setThumbnails(thumbnailMap);
-      }
+      setThumbnails(thumbnailMap);
     };
 
     fetchThumbnails();
