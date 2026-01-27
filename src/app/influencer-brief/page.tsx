@@ -18,19 +18,78 @@ const getImagePath = (imageName: string) => {
   return `${basePath}/influencer-brief/${encodedName}`;
 };
 
+// Helper to get local thumbnail path (permanent, never expires, instant load)
+const getThumbnailPath = (thumbnailName: string) => {
+  if (typeof window === 'undefined') {
+    return `/GodGPT-Marketing/influencer-brief/thumbnails/${thumbnailName}`;
+  }
+  const pathname = window.location.pathname;
+  const basePath = pathname.startsWith('/GodGPT-Marketing') ? '/GodGPT-Marketing' : '';
+  return `${basePath}/influencer-brief/thumbnails/${thumbnailName}`;
+};
+
+// Permanent local thumbnails - instant load, never expire
+const LOCAL_THUMBNAILS: Record<string, string> = {
+  'https://www.tiktok.com/@godgpt_/video/7584702619336051980': getThumbnailPath('tiktok-video-1.jpg'),
+  'https://www.tiktok.com/@godgpt_/video/7582135504154397970': getThumbnailPath('tiktok-video-2.jpg'),
+  'https://www.facebook.com/reel/1638065824272188': getThumbnailPath('facebook-reel.jpg'),
+};
+
 export default function InfluencerBriefPage() {
   const [currentSlide, setCurrentSlide] = useState(1);
   const totalSlides = 6;
-  const [thumbnails, setThumbnails] = useState<Record<string, string>>({});
+  // Initialize with local thumbnails (instant load, never expire)
+  const [thumbnails, setThumbnails] = useState<Record<string, string>>(LOCAL_THUMBNAILS);
 
-  // Fetch video thumbnails dynamically - always fresh, never expires
+  // Optional: Verify local thumbnails load, with dynamic fetch as fallback only
+  // Local thumbnails are already set in initial state for instant loading
   useEffect(() => {
-    const fetchThumbnails = async (retryCount = 0) => {
+    // Verify local thumbnails exist and load properly
+    const verifyLocalThumbnails = async () => {
       const videoUrls = [
         'https://www.tiktok.com/@godgpt_/video/7584702619336051980',
         'https://www.tiktok.com/@godgpt_/video/7582135504154397970',
         'https://www.facebook.com/reel/1638065824272188'
       ];
+
+      // Check if local thumbnails load successfully
+      const verifyPromises = videoUrls.map(async (url) => {
+        const localThumbnail = LOCAL_THUMBNAILS[url];
+        if (!localThumbnail) return;
+
+        try {
+          const img = new Image();
+          await new Promise((resolve, reject) => {
+            img.onload = resolve;
+            img.onerror = reject;
+            img.src = localThumbnail;
+            setTimeout(() => reject(new Error('Timeout')), 2000);
+          });
+          // Local thumbnail loads successfully - no need to fetch
+          return { url, thumbnail: localThumbnail, success: true };
+        } catch (e) {
+          // Local thumbnail failed - will fallback to dynamic fetch
+          console.warn(`Local thumbnail failed for ${url}, will try dynamic fetch`);
+          return { url, thumbnail: '', success: false };
+        }
+      });
+
+      const results = await Promise.allSettled(verifyPromises);
+      const failedUrls: string[] = [];
+
+      results.forEach((result, index) => {
+        if (result.status === 'fulfilled' && result.value && !result.value.success) {
+          failedUrls.push(videoUrls[index]);
+        }
+      });
+
+      // Only fetch dynamically if local thumbnails failed
+      if (failedUrls.length === 0) {
+        return; // All local thumbnails loaded successfully
+      }
+
+      // Fallback: Fetch failed thumbnails dynamically
+      const fetchThumbnails = async () => {
 
       // Helper: Add timeout to fetch requests (prevent hanging)
       const fetchWithTimeout = (url: string, timeout = 5000): Promise<Response> => {
@@ -48,8 +107,8 @@ export default function InfluencerBriefPage() {
         ]);
       };
 
-      // Fetch all thumbnails dynamically (always fresh, never expires)
-      const thumbnailPromises = videoUrls.map(async (url) => {
+      // Fetch only failed thumbnails dynamically
+      const thumbnailPromises = failedUrls.map(async (url) => {
         try {
           if (url.includes('tiktok.com')) {
             // TikTok oEmbed API - fast and reliable
@@ -199,36 +258,29 @@ export default function InfluencerBriefPage() {
         return { url, thumbnail: '' };
       });
 
-      // Fetch all thumbnails in parallel and update as they arrive
-      const results = await Promise.allSettled(thumbnailPromises);
-      const thumbnailMap: Record<string, string> = {};
-      const failedUrls: string[] = [];
-      
-      results.forEach((result, index) => {
-        if (result.status === 'fulfilled' && result.value.thumbnail) {
-          thumbnailMap[result.value.url] = result.value.thumbnail;
-        } else {
-          failedUrls.push(videoUrls[index]);
-          console.warn(`Failed to fetch thumbnail for ${videoUrls[index]}:`, result.status === 'rejected' ? result.reason : 'No thumbnail returned');
+        // Fetch failed thumbnails in parallel and update as they arrive
+        const results = await Promise.allSettled(thumbnailPromises);
+        const thumbnailMap: Record<string, string> = {};
+        
+        results.forEach((result) => {
+          if (result.status === 'fulfilled' && result.value.thumbnail) {
+            thumbnailMap[result.value.url] = result.value.thumbnail;
+          }
+        });
+        
+        // Update thumbnails with dynamically fetched ones (fallback only)
+        if (Object.keys(thumbnailMap).length > 0) {
+          setThumbnails(prev => ({ ...prev, ...thumbnailMap }));
         }
-      });
-      
-      // Update thumbnails immediately with what we got
-      setThumbnails(prev => ({ ...prev, ...thumbnailMap }));
-      
-      // Retry failed URLs once after a short delay (only for Facebook)
-      if (failedUrls.length > 0 && retryCount < 1) {
-        const facebookFailed = failedUrls.filter(url => url.includes('facebook.com'));
-        if (facebookFailed.length > 0) {
-          console.log(`Retrying ${facebookFailed.length} failed Facebook thumbnail(s)...`);
-          setTimeout(() => {
-            fetchThumbnails(retryCount + 1);
-          }, 2000);
-        }
+      };
+
+      // Only fetch if we have failed URLs
+      if (failedUrls.length > 0) {
+        fetchThumbnails();
       }
     };
 
-    fetchThumbnails();
+    verifyLocalThumbnails();
   }, []);
 
   useEffect(() => {
@@ -793,7 +845,7 @@ export default function InfluencerBriefPage() {
           <h3 className="text-3xl md:text-4xl font-bold mb-6 text-center text-purple-300">Top Performing Content</h3>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <a href="https://www.tiktok.com/@godgpt_/video/7584702619336051980" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer overflow-hidden" style={{ backgroundImage: thumbnails['https://www.tiktok.com/@godgpt_/video/7584702619336051980'] ? `url(${thumbnails['https://www.tiktok.com/@godgpt_/video/7584702619336051980']})` : 'linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(236, 72, 153, 0.15) 50%, rgba(59, 130, 246, 0.15) 100%)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            <a href="https://www.tiktok.com/@godgpt_/video/7584702619336051980" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer overflow-hidden" style={{ backgroundImage: thumbnails['https://www.tiktok.com/@godgpt_/video/7584702619336051980'] ? `url(${thumbnails['https://www.tiktok.com/@godgpt_/video/7584702619336051980']})` : 'linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(236, 72, 153, 0.15) 50%, rgba(59, 130, 246, 0.15) 100%)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
               <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 to-pink-900/30 group-hover:from-purple-900/10 group-hover:to-pink-900/10 transition-all" />
               <div className="absolute inset-0 flex items-center justify-center z-10 opacity-50 group-hover:opacity-0 transition-opacity pointer-events-none">
                 <div className="text-3xl mb-2">▶</div>
@@ -811,7 +863,7 @@ export default function InfluencerBriefPage() {
                 </ul>
               </div>
             </a>
-            <a href="https://www.tiktok.com/@godgpt_/video/7582135504154397970" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer overflow-hidden" style={{ backgroundImage: thumbnails['https://www.tiktok.com/@godgpt_/video/7582135504154397970'] ? `url(${thumbnails['https://www.tiktok.com/@godgpt_/video/7582135504154397970']})` : 'linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(236, 72, 153, 0.15) 50%, rgba(59, 130, 246, 0.15) 100%)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            <a href="https://www.tiktok.com/@godgpt_/video/7582135504154397970" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer overflow-hidden" style={{ backgroundImage: thumbnails['https://www.tiktok.com/@godgpt_/video/7582135504154397970'] ? `url(${thumbnails['https://www.tiktok.com/@godgpt_/video/7582135504154397970']})` : 'linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(236, 72, 153, 0.15) 50%, rgba(59, 130, 246, 0.15) 100%)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
               <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 to-pink-900/30 group-hover:from-purple-900/10 group-hover:to-pink-900/10 transition-all" />
               <div className="absolute inset-0 flex items-center justify-center z-10 opacity-50 group-hover:opacity-0 transition-opacity pointer-events-none">
                 <div className="text-3xl mb-2">▶</div>
@@ -829,7 +881,7 @@ export default function InfluencerBriefPage() {
                 </ul>
               </div>
             </a>
-            <a href="https://www.facebook.com/reel/1638065824272188" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer overflow-hidden" style={{ backgroundImage: thumbnails['https://www.facebook.com/reel/1638065824272188'] ? `url(${thumbnails['https://www.facebook.com/reel/1638065824272188']})` : 'linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(236, 72, 153, 0.15) 50%, rgba(59, 130, 246, 0.15) 100%)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+            <a href="https://www.facebook.com/reel/1638065824272188" target="_blank" rel="noopener noreferrer" className="visual-placeholder aspect-[9/16] rounded-xl relative group cursor-pointer overflow-hidden" style={{ backgroundImage: thumbnails['https://www.facebook.com/reel/1638065824272188'] ? `url(${thumbnails['https://www.facebook.com/reel/1638065824272188']})` : 'linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(236, 72, 153, 0.15) 50%, rgba(59, 130, 246, 0.15) 100%)', backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
               <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 to-pink-900/30 group-hover:from-purple-900/10 group-hover:to-pink-900/10 transition-all" />
               <div className="absolute inset-0 flex items-center justify-center z-10 opacity-50 group-hover:opacity-0 transition-opacity pointer-events-none">
                 <div className="text-3xl mb-2">▶</div>
