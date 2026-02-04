@@ -13,7 +13,7 @@ Follow-up TODOs:
   - RATIFICATION_DATE: Unknown - marked as TODO
 -->
 
-# GodGPT Marketing Research Platform Constitution
+# GodGPT-Marketing Research Platform Constitution
 
 ## Core Principles
 
