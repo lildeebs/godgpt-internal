@@ -1,0 +1,15 @@
+# OS
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+
+# IDE
+.idea/
+.vscode/
+*.sublime-*
+
+# Optional local / env (if added later)
+.env
+.env.local
+*.log
