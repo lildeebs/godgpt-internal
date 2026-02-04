@@ -8,8 +8,43 @@ Thumbs.db
 .idea/
 .vscode/
 *.sublime-*
+*.swo
+*~
 
-# Optional local / env (if added later)
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+.nyc_output
+
+# Next.js
+.next/
+out/
+build/
+dist/
+
+# Production
+*.log
+*.pid
+*.seed
+*.pid.lock
+
+# Environment variables
 .env
 .env.local
-*.log
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+
+# Prisma
+prisma/migrations/
+
+# TypeScript
+*.tsbuildinfo
+
+# Temporary files
+.cache/

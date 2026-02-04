@@ -1,50 +1,100 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report:
+Version: 0.0.0 → 1.0.0 (MAJOR: Initial constitution creation)
+Modified Principles: N/A (new file)
+Added Sections: Core Principles, Marketing Standards, Research & Data Standards, Governance
+Removed Sections: N/A
+Templates Requiring Updates:
+  ✅ plan-template.md - Constitution Check section exists, no changes needed
+  ✅ spec-template.md - No constitution-specific constraints, no changes needed
+  ✅ tasks-template.md - No constitution-specific task types, no changes needed
+  ⚠️ README.md - May need update to reference constitution (manual review recommended)
+Follow-up TODOs:
+  - RATIFICATION_DATE: Unknown - marked as TODO
+-->
+
+# GodGPT Marketing Research Platform Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Marketing-First Design
+All features and content MUST prioritize marketing effectiveness and user conversion. Every component serves a clear marketing purpose: awareness, engagement, or conversion. Design decisions are validated against marketing metrics (engagement rates, conversion rates, completion rates) rather than technical elegance alone. Mobile-first responsive design is mandatory for all marketing materials.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Research-Driven Content Strategy
+Content creation MUST be informed by data and research. All marketing materials reference source research, performance data, or user insights. Content hooks, messaging, and CTAs are tested and iterated based on measurable outcomes. Generic or untested content is prohibited—every piece must have a research-backed rationale or testing plan.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Brand Consistency & Authenticity
+All marketing materials MUST maintain GodGPT brand identity: mystical/spiritual aesthetic, purple/pink color scheme, authentic voice, and community-focused messaging. Content creators and affiliates are guided by brand guidelines that ensure consistency while allowing authentic personal expression. Brand guidelines supersede individual preferences.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Accessibility & User Experience (NON-NEGOTIABLE)
+All marketing presentations, forms, and landing pages MUST meet WCAG 2.1 AA accessibility standards. Mobile responsiveness is mandatory. Touch targets minimum 44x44px. Form validation must be real-time and user-friendly. Error states must be clear and actionable. Performance targets: <3s load time, 60fps animations.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Data Privacy & Security
+All user data collection (forms, analytics, tracking) MUST comply with privacy regulations (GDPR, CCPA). Data collection must be transparent with clear opt-in/opt-out mechanisms. Security measures (HTTPS, input sanitization, CSRF protection) are mandatory for all forms and data submission points.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Marketing Standards
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### Content Quality Requirements
+- All marketing content must align with GodGPT brand voice: contemplative, authentic, community-focused
+- Content hooks must follow the 3-second rule: capture attention within 3 seconds
+- Performance targets: >80% completion rate, >5% engagement rate, >2% share rate
+- Content must be tested or based on proven patterns from research
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+### Platform-Specific Optimization
+- TikTok/YouTube Shorts: 15-60 second videos (optimized for 15-30s sweet spot)
+- Landing pages: Mobile-first, fast load times, clear CTAs
+- Forms: Progressive enhancement, auto-save drafts, clear validation
+- All content must be optimized for US, UK, and AU markets
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### Affiliate & Influencer Guidelines
+- All affiliate content must include mandatory tags and hashtags
+- Content must follow brand guidelines while allowing authentic expression
+- Performance tracking and reporting required for affiliate partnerships
+- Clear onboarding materials and brand briefs must be provided
+
+## Research & Data Standards
+
+### Research Documentation
+- All marketing research (video analysis, hook testing, content patterns) MUST be documented
+- Research findings must be accessible to content creators and marketing team
+- Performance data must be tracked and analyzed regularly
+- A/B testing results must be documented and shared
+
+### Data Collection & Analysis
+- Marketing metrics must be tracked: views, engagement, conversion, completion rates
+- User feedback and testimonials must be collected and validated
+- Content performance data must inform future content strategy
+- Research findings must be actionable and specific
+
+## Development Workflow
+
+### Content Creation Process
+1. Research phase: Analyze trends, performance data, user insights
+2. Concept validation: Test hooks, validate messaging against brand guidelines
+3. Production: Create content following platform-specific best practices
+4. Testing: A/B test variations, measure performance
+5. Iteration: Refine based on data, double down on what works
+
+### Code & Design Standards
+- All code must follow TypeScript/React best practices
+- Design must follow mobile-first UI/UX principles
+- Components must be reusable and maintainable
+- Documentation must be clear and accessible
+
+### Review & Approval Process
+- All marketing materials must be reviewed for brand consistency
+- Content must be validated against research and performance data
+- Accessibility and security must be verified before deployment
+- Performance metrics must be reviewed post-deployment
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+This constitution supersedes all other practices and guidelines. All marketing materials, code, and content must comply with these principles.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Amendment Procedure**: Constitution amendments require documentation of rationale, impact assessment, and approval from project stakeholders. Version must be incremented according to semantic versioning (MAJOR.MINOR.PATCH).
+
+**Compliance Review**: All PRs and content submissions must verify compliance with constitution principles. Violations must be justified or corrected before approval.
+
+**Complexity Justification**: Any deviation from simplicity or standard practices must be documented with clear rationale and rejected alternatives.
+
+**Version**: 1.0.0 | **Ratified**: TODO(RATIFICATION_DATE): Original adoption date unknown - needs historical research | **Last Amended**: 2026-01-08

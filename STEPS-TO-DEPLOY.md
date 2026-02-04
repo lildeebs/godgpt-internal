@@ -2,6 +2,9 @@
 
 Do these in order. You can tick them off as you go.
 
+**Done for you:** Steps 1–5 (terminal in project, remote added, files staged, commit created).  
+**You do:** Step 6 (push) — requires your GitHub login in Terminal.
+
 ---
 
 ## Step 1: Open Terminal
@@ -16,14 +19,14 @@ Do these in order. You can tick them off as you go.
 
 ## Step 2: Add the GitHub Repo as “origin”
 
-- Replace `YOUR_GITHUB_USERNAME` with your real GitHub username (the one in the repo URL).
-- Run this **one** command:
+- Your repo: **https://github.com/lildeebs/GodGPT-Marketing**
+- Run this **one** command (or skip if origin is already set):
   ```bash
-  git remote add origin https://github.com/YOUR_GITHUB_USERNAME/GodGPT-Marketing.git
+  git remote add origin https://github.com/lildeebs/GodGPT-Marketing.git
   ```
 - If you see “remote origin already exists”, you can skip this step or run:
   ```bash
-  git remote set-url origin https://github.com/YOUR_GITHUB_USERNAME/GodGPT-Marketing.git
+  git remote set-url origin https://github.com/lildeebs/GodGPT-Marketing.git
   ```
 
 ---
@@ -95,11 +98,11 @@ Do these in order. You can tick them off as you go.
 
 ## Step 7: (Optional) Turn On GitHub Pages So the Site Is Live
 
-- In your browser, open: **https://github.com/YOUR_GITHUB_USERNAME/GodGPT-Marketing**
+- In your browser, open: **https://github.com/lildeebs/GodGPT-Marketing**
 - Go to **Settings** → **Pages** (left sidebar).
 - Under **Build and deployment**, set **Source** to **GitHub Actions**.
 - Save. After the next push (or the one you just did), the site will be at:
-  **https://YOUR_GITHUB_USERNAME.github.io/GodGPT-Marketing/**
+  **https://lildeebs.github.io/GodGPT-Marketing/**
 
 ---
 
@@ -108,7 +111,7 @@ Do these in order. You can tick them off as you go.
 | Step | What you do |
 |------|----------------|
 | 1 | Open terminal, `cd` to project folder |
-| 2 | `git remote add origin https://github.com/YOUR_GITHUB_USERNAME/GodGPT-Marketing.git` |
+| 2 | `git remote add origin https://github.com/lildeebs/GodGPT-Marketing.git` |
 | 3 | (Optional) `git fetch origin` then `git merge origin/main` if repo has existing commits |
 | 4 | `git add .gitignore index.html "Affiliate Landing Page V1/" "Affiliate Flow/" .cursor/ .specify/ .github/ DEPLOY-TO-GITHUB.md STEPS-TO-DEPLOY.md` |
 | 5 | `git commit -m "Add affiliate landing page and deploy setup"` |

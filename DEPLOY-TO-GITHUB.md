@@ -1,8 +1,7 @@
 # Deploy This Project to GitHub
 
-Using your **existing repo**: **GodGPT-Marketing**
-
-Replace `YOUR_USERNAME` below with your GitHub username (e.g. if the repo URL is `github.com/GodGPT/GodGPT-Marketing`, use `GodGPT`).
+Using your **existing repo**: **lildeebs/GodGPT-Marketing**  
+https://github.com/lildeebs/GodGPT-Marketing
 
 ---
 
@@ -12,7 +11,7 @@ In your project folder, run:
 
 ```bash
 # Add your existing repo as the remote
-git remote add origin https://github.com/YOUR_USERNAME/GodGPT-Marketing.git
+git remote add origin https://github.com/lildeebs/GodGPT-Marketing.git
 
 # Stage the files you want to deploy (landing page + assets)
 git add .gitignore index.html "Affiliate Landing Page V1/" "Affiliate Flow/" .cursor/ .specify/ .github/ DEPLOY-TO-GITHUB.md
@@ -32,7 +31,7 @@ To push to `main` instead:
 git checkout -b main
 git add .gitignore index.html "Affiliate Landing Page V1/" "Affiliate Flow/" .cursor/ .specify/ .github/ DEPLOY-TO-GITHUB.md
 git commit -m "Add affiliate landing page and deploy setup"
-git remote add origin https://github.com/YOUR_USERNAME/GodGPT-Marketing.git
+git remote add origin https://github.com/lildeebs/GodGPT-Marketing.git
 git push -u origin main
 ```
 
@@ -71,7 +70,7 @@ After the first push:
 
 | Step              | Action |
 |-------------------|--------|
-| Add remote        | `git remote add origin https://github.com/YOUR_USERNAME/GodGPT-Marketing.git` |
+| Add remote        | `git remote add origin https://github.com/lildeebs/GodGPT-Marketing.git` |
 | Commit & push     | `git add ...` → `git commit -m "..."` → `git push -u origin BRANCH` |
 | Turn on Pages     | Repo **Settings** → **Pages** → Source: **GitHub Actions** |
-| Live URL          | `https://YOUR_USERNAME.github.io/GodGPT-Marketing/` |
+| Live URL          | `https://lildeebs.github.io/GodGPT-Marketing/` |

@@ -1,0 +1,95 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Next.js
+        run: npm run build
+        env:
+          NODE_ENV: production
+          EXPORT_MODE: 'true'
+
+      - name: Verify build output
+        run: |
+          echo "Checking for out directory..."
+          ls -la
+          if [ -d out ]; then
+            echo "✓ out directory exists"
+            ls -la out/ | head -10
+          else
+            echo "❌ Error: out directory not found after build"
+            echo "Build may have failed. Checking for errors..."
+            exit 1
+          fi
+
+      - name: Copy public assets
+        run: |
+          if [ -f public/logo.png ]; then
+            cp public/logo.png out/logo.png
+            echo "✓ Copied logo.png to out directory"
+          fi
+          if [ -f 'public/GodGPT Logo_Cursor.png' ]; then
+            cp 'public/GodGPT Logo_Cursor.png' out/ 2>/dev/null || true
+            echo "✓ Copied original logo file"
+          fi
+          if [ -d public/influencer-brief ]; then
+            cp -r public/influencer-brief out/ 2>/dev/null || true
+            echo "✓ Copied influencer-brief images to out directory"
+          fi
+
+      - name: Create .nojekyll file
+        run: |
+          touch out/.nojekyll
+          if [ -f out/.nojekyll ]; then
+            echo "✓ Created .nojekyll file successfully"
+          else
+            echo "❌ Error: Failed to create .nojekyll file"
+            exit 1
+          fi
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
