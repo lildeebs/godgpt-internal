@@ -58,7 +58,7 @@ Do these in order. You can tick them off as you go.
 
 - Run:
   ```bash
-  git add .gitignore index.html "Affiliate Landing Page V1/" "Affiliate Flow/" .cursor/ .specify/ .github/ DEPLOY-TO-GITHUB.md STEPS-TO-DEPLOY.md
+  git add .gitignore index.html affiliate-landing-page/ "Affiliate Flow/" .cursor/ .specify/ .github/ DEPLOY-TO-GITHUB.md STEPS-TO-DEPLOY.md
   ```
 - Check what will be committed:
   ```bash
@@ -113,7 +113,7 @@ Do these in order. You can tick them off as you go.
 | 1 | Open terminal, `cd` to project folder |
 | 2 | `git remote add origin https://github.com/lildeebs/GodGPT-Marketing.git` |
 | 3 | (Optional) `git fetch origin` then `git merge origin/main` if repo has existing commits |
-| 4 | `git add .gitignore index.html "Affiliate Landing Page V1/" "Affiliate Flow/" .cursor/ .specify/ .github/ DEPLOY-TO-GITHUB.md STEPS-TO-DEPLOY.md` |
+| 4 | `git add .gitignore index.html affiliate-landing-page/ "Affiliate Flow/" .cursor/ .specify/ .github/ DEPLOY-TO-GITHUB.md STEPS-TO-DEPLOY.md` |
 | 5 | `git commit -m "Add affiliate landing page and deploy setup"` |
 | 6 | `git push -u origin 001-landing-page-website` (or `main`) |
 | 7 | (Optional) Repo **Settings** → **Pages** → Source: **GitHub Actions** |

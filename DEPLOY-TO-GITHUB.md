@@ -14,9 +14,9 @@ In your project folder, run:
 git remote add origin https://github.com/lildeebs/GodGPT-Marketing.git
 
 # Stage the files you want to deploy (landing page + assets)
-git add .gitignore index.html "Affiliate Landing Page V1/" "Affiliate Flow/" .cursor/ .specify/ .github/ DEPLOY-TO-GITHUB.md
+git add .gitignore index.html affiliate-landing-page/ "Affiliate Flow/" .cursor/ .specify/ .github/ DEPLOY-TO-GITHUB.md
 # Optional: add specs
-# git add "Affiliate Landing Page V1/specs/"
+# git add affiliate-landing-page/specs/
 
 # Commit
 git commit -m "Add affiliate landing page and deploy setup"
@@ -29,7 +29,7 @@ To push to `main` instead:
 
 ```bash
 git checkout -b main
-git add .gitignore index.html "Affiliate Landing Page V1/" "Affiliate Flow/" .cursor/ .specify/ .github/ DEPLOY-TO-GITHUB.md
+git add .gitignore index.html affiliate-landing-page/ "Affiliate Flow/" .cursor/ .specify/ .github/ DEPLOY-TO-GITHUB.md
 git commit -m "Add affiliate landing page and deploy setup"
 git remote add origin https://github.com/lildeebs/GodGPT-Marketing.git
 git push -u origin main
