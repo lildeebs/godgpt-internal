@@ -1,20 +1,41 @@
-# GitHub Pages setup (godgpt-internal)
+# Fix: "Get Pages site failed" / deploy HttpError: Not Found
 
-If **https://lildeebs.github.io/godgpt-internal/2025-wrapped/** shows "Content not found" or 404:
+The workflow fails because **GitHub Pages is not enabled** or not set to use GitHub Actions. Do this **once** in the repo on GitHub:
 
-1. **Enable Pages from Actions**
-   - Repo → **Settings** → **Pages**
-   - Under **Build and deployment**, set **Source** to **GitHub Actions** (not "Deploy from a branch")
-   - Save
+---
 
-2. **Check the workflow run**
-   - Repo → **Actions** → open the latest **Deploy to GitHub Pages** run
-   - If it’s red (failed), open the job and read the error (e.g. "environment: github-pages" or permissions)
-   - If it’s green, wait 1–2 minutes and try the URL again
+## Step 1: Open Pages settings
 
-3. **If another workflow deploys to Pages**
-   - Only one deployment wins. If a different workflow also deploys to Pages, it may overwrite this one. Disable or remove the other workflow, or make this one run last.
+1. Go to **https://github.com/lildeebs/godgpt-internal**
+2. Click **Settings** (repo tabs: Code, Issues, … **Settings**)
+3. In the left sidebar, under **Code and automation**, click **Pages**
 
-4. **URLs after a successful deploy**
-   - Root: https://lildeebs.github.io/godgpt-internal/
-   - 2025 Wrapped: https://lildeebs.github.io/godgpt-internal/2025-wrapped/
+---
+
+## Step 2: Set source to GitHub Actions
+
+1. Under **Build and deployment**
+2. Find **Source** (dropdown or radio)
+3. Select **GitHub Actions** (not "Deploy from a branch")
+4. Do **not** pick a branch or folder — leave that for "Deploy from a branch"
+5. Save if there’s a button
+
+---
+
+## Step 3: Re-run the workflow
+
+1. Go to **Actions** → open the failed run **"Deploy to GitHub Pages"**
+2. Click **Re-run all jobs** (top right)
+3. Wait for the run to turn green (~1–2 min)
+4. Then open: **https://lildeebs.github.io/godgpt-internal/2025-wrapped/**
+
+---
+
+## If you don’t see "Pages" in Settings
+
+- You must have **admin** (or write) access to the repo. If it’s an org repo, an admin may need to enable Pages for the repo or for the organization first.
+
+## URLs after it works
+
+- Root: https://lildeebs.github.io/godgpt-internal/
+- 2025 Wrapped: https://lildeebs.github.io/godgpt-internal/2025-wrapped/

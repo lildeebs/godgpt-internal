@@ -1,5 +1,8 @@
 # Deploy repo to GitHub Pages so /2025-wrapped/ and other static files are live.
-# In repo Settings → Pages, set Source to "GitHub Actions".
+#
+# REQUIRED: Enable Pages first or deploy will fail with "Get Pages site failed":
+#   Repo → Settings → Pages → Build and deployment → Source: "GitHub Actions"
+# See PAGES-SETUP.md for step-by-step.
 
 name: Deploy to GitHub Pages
 
