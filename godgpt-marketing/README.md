@@ -33,7 +33,7 @@ Copy the HTML and integrate into your existing website or landing page builder.
 ### Option 4: Share via CDN
 Access directly from GitHub:
 ```
-https://raw.githubusercontent.com/lildeebs/GodGPT-Marketing/main/marketing/godgpt-landing.html
+https://raw.githubusercontent.com/lildeebs/godgpt-internal/main/marketing/godgpt-landing.html
 ```
 
 ## 🎨 Customization
@@ -61,7 +61,7 @@ Add your tracking code before the closing `</body>` tag:
 
 ## 🔗 Links to Live Versions
 
-- **Next.js Version (Main):** https://lildeebs.github.io/GodGPT-Marketing/2025-wrapped
+- **Next.js Version (Main):** https://lildeebs.github.io/godgpt-internal/2025-wrapped
 - **Standalone HTML:** Open `godgpt-landing.html` locally or host anywhere
 
 ## 📦 What's Included
