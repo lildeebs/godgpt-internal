@@ -1,6 +1,6 @@
-# Fix: "Get Pages site failed" / deploy HttpError: Not Found
+# Fix: "There isn't a GitHub Pages site here" / 404
 
-The workflow fails because **GitHub Pages is not enabled** or not set to use GitHub Actions. Do this **once** in the repo on GitHub:
+GitHub Pages must be **enabled** and set to **GitHub Actions**. Do this **once** in the repo on GitHub:
 
 ---
 
@@ -22,12 +22,10 @@ The workflow fails because **GitHub Pages is not enabled** or not set to use Git
 
 ---
 
-## Step 3: Re-run the workflow
+## Step 3: Trigger deployment
 
-1. Go to **Actions** → open the failed run **"Deploy to GitHub Pages"**
-2. Click **Re-run all jobs** (top right)
-3. Wait for the run to turn green (~1–2 min)
-4. Then open: **https://lildeebs.github.io/godgpt-internal/2025-wrapped/**
+- Push a commit to `main`, or go to **Actions** → **Deploy to GitHub Pages** → **Re-run all jobs**.
+- Wait for the run to finish (~1–2 min).
 
 ---
 
@@ -37,5 +35,6 @@ The workflow fails because **GitHub Pages is not enabled** or not set to use Git
 
 ## URLs after it works
 
-- Root: https://lildeebs.github.io/godgpt-internal/
-- 2025 Wrapped: https://lildeebs.github.io/godgpt-internal/2025-wrapped/
+- **Root:** https://lildeebs.github.io/godgpt-internal/
+- **Affiliate landing page:** https://lildeebs.github.io/godgpt-internal/affiliate-landing-page/
+- **2025 Wrapped:** https://lildeebs.github.io/godgpt-internal/2025-wrapped/
